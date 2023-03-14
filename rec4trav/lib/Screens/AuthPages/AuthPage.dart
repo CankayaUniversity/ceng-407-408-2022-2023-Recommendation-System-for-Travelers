@@ -1,13 +1,15 @@
 // ignore: file_names
 // ignore_for_file: file_names, duplicate_ignore, prefer_const_constructors_in_immutables, use_key_in_widget_constructors
 
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:rec4trav/Models/colors.dart';
-import '../B_NavigatorBar/Main_Page_Classes/MainPage.dart';
-import 'auth.dart';
+import 'package:rec4trav/Utils/utils.dart';
+import '../B_NavigatorBar/MainPage.dart';
 import 'package:get/get.dart';
+import 'package:rec4trav/resources/auth_methods.dart';
 
 class AuthPage extends StatefulWidget {
   AuthPage();
@@ -20,6 +22,7 @@ class AuthPage extends StatefulWidget {
 class _AuthPageState extends State<AuthPage> {
   String? errorMessage = '';
   bool isLogin = true;
+  Uint8List? _image;
 
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
@@ -29,42 +32,45 @@ class _AuthPageState extends State<AuthPage> {
   final TextEditingController _controllerEmail2 = TextEditingController();
   final TextEditingController _controllerPassword2 = TextEditingController();
 
-// ignore: non_constant_identifier_names
-  Future<void> SignIn() async {
-    try {
-      await Auth().signInWithEmailAndPassword(
-          email: _controllerEmail2.text, password: _controllerPassword2.text);
-      Get.offAll(MainPage());
-    } on FirebaseAuthException catch (e) {
-      setState(
-        () {
-          errorMessage = e.message;
-        },
+  @override
+  void dispose() {
+    super.dispose();
+    _controllerEmail.dispose();
+    _controllerPassword.dispose();
+    _controllerUsername.dispose();
+  }
+
+  void _registerUser() async {
+    String res = await AuthMethods().signUpUser(
+        email: _controllerEmail.text,
+        password: _controllerPassword.text,
+        username: _controllerUsername.text,
+        fullname: _controllerFullname.text,
+        file: _image!);
+    if (res == "success") {
+      // ignore: use_build_context_synchronously
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => MainPage()),
       );
+    } else {
+      // ignore: use_build_context_synchronously
+      showSnackBar(context, res);
     }
   }
 
-  // ignore: non_constant_identifier_names
-  Future<void> Register() async {
+  selectImage() async {
+    Uint8List im = await pickImage(ImageSource.gallery);
+    // set state because we need to display the image we selected on the circle avatar
+    setState(() {
+      _image = im;
+    });
+  }
+
+  Future<void> _signIn() async {
     try {
-      await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
-              email: _controllerEmail.text, password: _controllerPassword.text)
-          .then(
-        (user) {
-          FirebaseFirestore.instance
-              .collection("RegisteredUsers")
-              .doc(_controllerEmail.text)
-              .set(
-            {
-              "Email": _controllerEmail.text,
-              "Username": _controllerUsername.text,
-              "Fullname": _controllerFullname.text,
-              "Password": _controllerPassword.text,
-            },
-          );
-        },
-      );
+      await AuthMethods().loginUser(
+          email: _controllerEmail2.text, password: _controllerPassword2.text);
       Get.offAll(MainPage());
     } on FirebaseAuthException catch (e) {
       setState(
@@ -84,8 +90,7 @@ class _AuthPageState extends State<AuthPage> {
     );
   }
 
-// ignore: non_constant_identifier_names
-  Widget LoginFields() {
+  Widget _loginFields() {
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Center(
@@ -152,15 +157,43 @@ class _AuthPageState extends State<AuthPage> {
     );
   }
 
-// ignore: non_constant_identifier_names
-  Widget RegisterFields() {
+  Widget _registerFields() {
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Center(
         child: Column(
           children: [
+            Stack(
+              children: [
+                _image != null
+                    ? CircleAvatar(
+                        radius: 64,
+                        backgroundImage: MemoryImage(_image!),
+                        //Image.file(File(_image!.path)).image,
+                        backgroundColor:
+                            const Color.fromARGB(255, 165, 159, 159),
+                      )
+                    : GestureDetector(
+                        onTap: selectImage,
+                        child: CircleAvatar(
+                          radius: 64,
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(70)),
+                            width: 150,
+                            height: 150,
+                            child: const Icon(
+                              size: 45,
+                              Icons.camera_alt,
+                              color: Color.fromARGB(255, 0, 0, 0),
+                            ),
+                          ),
+                        ),
+                      ),
+              ],
+            ),
             const SizedBox(
-              height: 100,
+              height: 50,
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -263,8 +296,7 @@ class _AuthPageState extends State<AuthPage> {
     );
   }
 
-  // ignore: non_constant_identifier_names
-  Widget Login_Register_Button() {
+  Widget _login_register_button() {
     // ignore: sized_box_for_whitespace
     return Container(
       width: 90,
@@ -275,7 +307,7 @@ class _AuthPageState extends State<AuthPage> {
           isLogin ? 'Login' : 'Register',
           style: const TextStyle(color: Palette.color5),
         ),
-        onPressed: isLogin ? SignIn : Register,
+        onPressed: isLogin ? _signIn : _registerUser,
         style: ElevatedButton.styleFrom(
             // ignore: deprecated_member_use
             primary: Palette.appBarColor,
@@ -287,8 +319,7 @@ class _AuthPageState extends State<AuthPage> {
     );
   }
 
-  // ignore: non_constant_identifier_names
-  Widget Login_Register_Text() {
+  Widget _login_register_text_button() {
     return SizedBox(
       width: 130,
       height: 70,
@@ -326,8 +357,8 @@ class _AuthPageState extends State<AuthPage> {
                 const SizedBox(
                   height: 90,
                 ),
-                if (isLogin) LoginFields(),
-                if (!isLogin) RegisterFields(),
+                if (isLogin) _loginFields(),
+                if (!isLogin) _registerFields(),
                 SizedBox(
                   width: 250,
                   height: 50,
@@ -336,8 +367,8 @@ class _AuthPageState extends State<AuthPage> {
                 const SizedBox(
                   height: 20,
                 ),
-                Login_Register_Button(),
-                Login_Register_Text(),
+                _login_register_button(),
+                _login_register_text_button(),
               ],
             ),
           ),

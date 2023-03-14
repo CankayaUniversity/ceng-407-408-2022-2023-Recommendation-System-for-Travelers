@@ -3,8 +3,8 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import '../bottom_nav.dart';
-import '../routes.dart';
+import 'bottom_nav.dart';
+import 'routes.dart';
 
 class MainPage extends StatefulWidget {
   // ignore: prefer_const_constructors_in_immutables

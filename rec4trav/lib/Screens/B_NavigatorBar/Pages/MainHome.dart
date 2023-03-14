@@ -73,7 +73,7 @@ class MainHomePageState extends State<MainHomePage>
                             height: 20,
                           ),
                           const Text(
-                            'Recommendation System For Travelers',
+                            '--Recommendation System For Travelers',
                             style: TextStyle(color: Colors.white, fontSize: 23),
                           ),
                           Padding(

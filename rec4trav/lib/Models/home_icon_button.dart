@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rec4trav/Pages/MainButtonPages/Favorites.dart';
-import 'package:rec4trav/Pages/MainButtonPages/Maps.dart';
-import 'package:rec4trav/Pages/MainButtonPages/Photos.dart';
-import 'package:rec4trav/Pages/MainButtonPages/RecentPlaces.dart';
+import 'package:rec4trav/Screens/MainButtonPages/Favorites.dart';
+import 'package:rec4trav/Screens/MainButtonPages/Maps.dart';
+import 'package:rec4trav/Screens/MainButtonPages/Photos.dart';
+import 'package:rec4trav/Screens/MainButtonPages/RecentPlaces.dart';
 
 // ignore: must_be_immutable
 class CatigoryW extends StatelessWidget {

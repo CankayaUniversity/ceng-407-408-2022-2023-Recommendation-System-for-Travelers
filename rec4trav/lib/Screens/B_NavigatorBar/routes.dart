@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'Pages/ActivityPage.dart';
 import 'Pages/DiscoverPage.dart';
@@ -14,9 +15,11 @@ class Routes extends StatelessWidget {
     List<Widget> pageList = [
       MainHomePage(),
       DiscoverPage(),
-      PostPage(),
-      const ActivityPage(),
-      ProfilePage(),
+      const PostPage(),
+      ActivityPage(),
+      ProfilePage(
+        uid: FirebaseAuth.instance.currentUser!.uid,
+      ),
     ];
     return pageList[index];
   }
