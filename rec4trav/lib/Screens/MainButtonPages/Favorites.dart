@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:rec4trav/Models/colors.dart';
+import 'package:rec4trav/Models/Palette.dart';
 
 class WishListPage extends StatefulWidget {
   const WishListPage({super.key});

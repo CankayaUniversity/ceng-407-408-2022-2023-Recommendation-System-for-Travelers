@@ -4,7 +4,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:rec4trav/Models/colors.dart';
+import 'package:rec4trav/Models/Palette.dart';
 import 'package:rec4trav/Screens/AuthPages/AuthPage.dart';
 import 'package:rec4trav/Utils/utils.dart';
 import 'package:rec4trav/Widgets/button_widget.dart';
@@ -69,7 +69,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Palette.appBarColor,
+        backgroundColor: Palette.color21,
         title: Text(
           userData['username'] ?? 'Unknown',
         ),
@@ -106,7 +106,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             FirebaseAuth.instance.currentUser?.uid == widget.uid
                                 ? FollowButton(
                                     text: 'Sign Out',
-                                    backgroundColor: Palette.appBarColor,
+                                    backgroundColor: Palette.color21,
                                     textColor: Colors.black,
                                     borderColor: Colors.grey,
                                     function: () async {

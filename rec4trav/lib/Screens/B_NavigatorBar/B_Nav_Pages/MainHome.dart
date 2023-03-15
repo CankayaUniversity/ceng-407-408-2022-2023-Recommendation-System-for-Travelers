@@ -1,7 +1,7 @@
 // ignore: file_names
 // ignore_for_file: file_names, duplicate_ignore, unused_element
 
-import 'package:rec4trav/Models/colors.dart';
+import 'package:rec4trav/Models/Palette.dart';
 import 'package:flutter/material.dart';
 
 import '../../../Models/home_icon_button.dart';

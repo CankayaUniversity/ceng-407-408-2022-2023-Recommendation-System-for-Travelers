@@ -4,6 +4,8 @@
 import 'package:flutter_masonry_view/flutter_masonry_view.dart';
 import 'package:flutter/material.dart';
 
+import '../../../Models/Palette.dart';
+
 class DiscoverPage extends StatefulWidget {
   const DiscoverPage({super.key});
 
@@ -37,8 +39,10 @@ class DiscoverPageState extends State<DiscoverPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Palette.color41,
       appBar: AppBar(
-        title: const Text('Flutter Masonry View'),
+        title: const Text('Discover'),
+        backgroundColor: Palette.color21,
       ),
       body: SingleChildScrollView(
         child: MasonryView(

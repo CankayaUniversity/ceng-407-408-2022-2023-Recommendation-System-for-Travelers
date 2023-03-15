@@ -23,8 +23,8 @@ class Palette {
   static const Color curserColor = Color(0XFF036280);
   static const Color borderColor = Color(0XFF036280);
 
-  static const Color color11 = Color(0XFF769FCD);
-  static const Color color21 = Color(0XFFB9D7EA);
-  static const Color color31 = Color(0XFFD6E6F2);
-  static const Color color41 = Color(0XFFF7FBFC);
+  static const Color color11 = Color(0XFF0014FF);
+  static const Color color21 = Color(0XFF009EFF);
+  static const Color color31 = Color(0XFF00E7FF);
+  static const Color color41 = Color(0XFF00FFF6);
 }

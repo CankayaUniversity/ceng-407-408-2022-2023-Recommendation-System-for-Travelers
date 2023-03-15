@@ -6,7 +6,7 @@ import 'dart:typed_data';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:rec4trav/Models/colors.dart';
+import 'package:rec4trav/Models/Palette.dart';
 import '../../../Provider/UserProvider.dart';
 import '../../../Utils/utils.dart';
 import '../../../resources/firestore_methods.dart';
@@ -121,17 +121,26 @@ class _PostPageState extends State<PostPage> {
     final UserProvider userProvider = Provider.of<UserProvider>(context);
 
     return _file == null
-        ? Center(
-            child: IconButton(
-              icon: const Icon(
-                Icons.upload,
+        ? Scaffold(
+            appBar: AppBar(
+              title: const Text(
+                'Post',
               ),
-              onPressed: () => _selectImage(context),
+              backgroundColor: Palette.color21,
             ),
+            body: Center(
+              child: IconButton(
+                icon: const Icon(
+                  Icons.upload,
+                ),
+                onPressed: () => _selectImage(context),
+              ),
+            ),
+            backgroundColor: Palette.color41,
           )
         : Scaffold(
             appBar: AppBar(
-              backgroundColor: Palette.appBarColor,
+              backgroundColor: Palette.color21,
               leading: IconButton(
                 icon: const Icon(Icons.arrow_back),
                 onPressed: clearImage,

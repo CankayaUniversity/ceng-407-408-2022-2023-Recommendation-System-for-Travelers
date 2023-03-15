@@ -5,7 +5,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:rec4trav/Models/colors.dart';
+import 'package:rec4trav/Models/Palette.dart';
 import 'package:rec4trav/Utils/utils.dart';
 import '../../Layout/mobile_layout.dart';
 import '../../Layout/responsive_layout.dart';
@@ -115,9 +115,7 @@ class _AuthPageState extends State<AuthPage> {
       child: Center(
         child: Column(
           children: [
-            const SizedBox(
-              height: 180,
-            ),
+            Image.asset('assets/Rec4TravBcPng2.png'),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
@@ -127,15 +125,15 @@ class _AuthPageState extends State<AuthPage> {
                   filled: true,
                   fillColor: Palette.fieldColor,
                   hintText: 'E-mail',
-                  hintStyle: const TextStyle(color: Palette.textColor),
+                  hintStyle: const TextStyle(color: Palette.color21),
                   prefixIcon: const Icon(Icons.email),
-                  prefixIconColor: Palette.iconColor21,
+                  prefixIconColor: Palette.color11,
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.borderColor),
+                    borderSide: const BorderSide(color: Palette.color21),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.borderColor),
+                    borderSide: const BorderSide(color: Palette.color21),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
@@ -153,18 +151,18 @@ class _AuthPageState extends State<AuthPage> {
                 autocorrect: false,
                 controller: _controllerPassword2,
                 decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.password_sharp),
-                  prefixIconColor: Palette.iconColor21,
+                  prefixIcon: const Icon(Icons.key),
+                  prefixIconColor: Palette.color11,
                   filled: true,
                   fillColor: Palette.fieldColor,
                   hintText: 'Password',
-                  hintStyle: const TextStyle(color: Palette.textColor),
+                  hintStyle: const TextStyle(color: Palette.color21),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.borderColor),
+                    borderSide: const BorderSide(color: Palette.color21),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.borderColor),
+                    borderSide: const BorderSide(color: Palette.color21),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
@@ -195,6 +193,7 @@ class _AuthPageState extends State<AuthPage> {
                     : GestureDetector(
                         onTap: selectImage,
                         child: CircleAvatar(
+                          backgroundColor: Palette.color21,
                           radius: 64,
                           child: Container(
                             decoration: BoxDecoration(
@@ -203,7 +202,7 @@ class _AuthPageState extends State<AuthPage> {
                             height: 150,
                             child: const Icon(
                               size: 45,
-                              Icons.camera_alt,
+                              Icons.add_a_photo_outlined,
                               color: Color.fromARGB(255, 0, 0, 0),
                             ),
                           ),
@@ -223,15 +222,15 @@ class _AuthPageState extends State<AuthPage> {
                   filled: true,
                   fillColor: Palette.fieldColor,
                   hintText: 'E-mail',
-                  hintStyle: const TextStyle(color: Palette.textColor),
+                  hintStyle: const TextStyle(color: Palette.color21),
                   prefixIcon: const Icon(Icons.email),
-                  prefixIconColor: Palette.iconColor21,
+                  prefixIconColor: Palette.color11,
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.borderColor),
+                    borderSide: const BorderSide(color: Palette.color21),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.borderColor),
+                    borderSide: const BorderSide(color: Palette.color21),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
@@ -246,15 +245,15 @@ class _AuthPageState extends State<AuthPage> {
                   filled: true,
                   fillColor: Palette.fieldColor,
                   hintText: 'Username',
-                  hintStyle: const TextStyle(color: Palette.textColor),
+                  hintStyle: const TextStyle(color: Palette.color21),
                   prefixIcon: const Icon(Icons.person),
-                  prefixIconColor: Palette.iconColor21,
+                  prefixIconColor: Palette.color11,
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.borderColor),
+                    borderSide: const BorderSide(color: Palette.color21),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.borderColor),
+                    borderSide: const BorderSide(color: Palette.color21),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
@@ -269,15 +268,15 @@ class _AuthPageState extends State<AuthPage> {
                   filled: true,
                   fillColor: Palette.fieldColor,
                   hintText: 'Full Name',
-                  hintStyle: const TextStyle(color: Palette.textColor),
+                  hintStyle: const TextStyle(color: Palette.color21),
                   prefixIcon: const Icon(Icons.text_fields),
-                  prefixIconColor: Palette.iconColor21,
+                  prefixIconColor: Palette.color11,
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.borderColor),
+                    borderSide: const BorderSide(color: Palette.color21),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.borderColor),
+                    borderSide: const BorderSide(color: Palette.color21),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
@@ -295,15 +294,15 @@ class _AuthPageState extends State<AuthPage> {
                   filled: true,
                   fillColor: Palette.fieldColor,
                   hintText: 'Password',
-                  hintStyle: const TextStyle(color: Palette.textColor),
-                  prefixIcon: const Icon(Icons.password_sharp),
-                  prefixIconColor: Palette.iconColor21,
+                  hintStyle: const TextStyle(color: Palette.color21),
+                  prefixIcon: const Icon(Icons.key),
+                  prefixIconColor: Palette.color11,
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.borderColor),
+                    borderSide: const BorderSide(color: Palette.color21),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.borderColor),
+                    borderSide: const BorderSide(color: Palette.color21),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
@@ -330,7 +329,7 @@ class _AuthPageState extends State<AuthPage> {
         onPressed: isLogin ? _login : _registerUser,
         style: ElevatedButton.styleFrom(
             // ignore: deprecated_member_use
-            primary: Palette.appBarColor,
+            primary: Palette.color21,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             textStyle:
@@ -355,7 +354,7 @@ class _AuthPageState extends State<AuthPage> {
         child: Text(
           isLogin ? 'Register instead' : 'Login instead',
           style:
-              const TextStyle(color: Palette.textColor, fontFamily: 'WorkSans'),
+              const TextStyle(color: Palette.color31, fontFamily: 'WorkSans'),
         ),
       ),
     );

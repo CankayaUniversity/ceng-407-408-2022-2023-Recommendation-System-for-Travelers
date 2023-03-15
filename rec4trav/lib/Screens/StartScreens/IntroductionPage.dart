@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:intro_screen_onboarding_flutter/introduction.dart';
 import 'package:intro_screen_onboarding_flutter/introscreenonboarding.dart';
+import 'package:rec4trav/Models/Palette.dart';
 import 'package:rec4trav/Screens/AuthPages/AuthPage.dart';
 import 'package:get/get.dart';
 
@@ -33,6 +34,12 @@ class IntroductionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IntroScreenOnboarding(
+      skipTextStyle: const TextStyle(
+        color: Palette.color11,
+        fontSize: 20,
+      ),
+      foregroundColor: Palette.color11,
+      backgroudColor: Palette.color41,
       introductionList: list,
       onTapSkipButton: () {
         Get.offAll(AuthPage());
