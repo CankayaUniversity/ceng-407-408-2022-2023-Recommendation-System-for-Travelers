@@ -1,3 +1,6 @@
+// ignore: file_names
+// ignore_for_file: file_names, duplicate_ignore
+
 import 'package:flutter/widgets.dart';
 import '../Models/User.dart';
 import '../resources/auth_methods.dart';

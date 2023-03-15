@@ -7,8 +7,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:rec4trav/Models/colors.dart';
 import 'package:rec4trav/Utils/utils.dart';
-import '../B_NavigatorBar/MainPage.dart';
-import 'package:get/get.dart';
+import '../../Layout/mobile_layout.dart';
+import '../../Layout/responsive_layout.dart';
 import 'package:rec4trav/resources/auth_methods.dart';
 
 class AuthPage extends StatefulWidget {
@@ -40,25 +40,6 @@ class _AuthPageState extends State<AuthPage> {
     _controllerUsername.dispose();
   }
 
-  void _registerUser() async {
-    String res = await AuthMethods().signUpUser(
-        email: _controllerEmail.text,
-        password: _controllerPassword.text,
-        username: _controllerUsername.text,
-        fullname: _controllerFullname.text,
-        file: _image!);
-    if (res == "success") {
-      // ignore: use_build_context_synchronously
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => MainPage()),
-      );
-    } else {
-      // ignore: use_build_context_synchronously
-      showSnackBar(context, res);
-    }
-  }
-
   selectImage() async {
     Uint8List im = await pickImage(ImageSource.gallery);
     // set state because we need to display the image we selected on the circle avatar
@@ -67,11 +48,49 @@ class _AuthPageState extends State<AuthPage> {
     });
   }
 
-  Future<void> _signIn() async {
+  Future<void> _registerUser() async {
+    try {
+      String res = await AuthMethods().signUpUser(
+          email: _controllerEmail.text,
+          password: _controllerPassword.text,
+          username: _controllerUsername.text,
+          fullname: _controllerFullname.text,
+          file: _image!);
+      if (res == "success") {
+        // ignore: use_build_context_synchronously
+        if (mounted) {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => const ResponsiveLayout(
+                mobileScreenLayout: MobileScreenLayout(),
+              ),
+            ),
+          );
+        }
+      } else {
+        // ignore: use_build_context_synchronously
+        showSnackBar(context, res);
+      }
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        errorMessage = e.message;
+      });
+    }
+  }
+
+  Future<void> _login() async {
     try {
       await AuthMethods().loginUser(
           email: _controllerEmail2.text, password: _controllerPassword2.text);
-      Get.offAll(MainPage());
+      //Get.offAll(MainPage());
+      // ignore: use_build_context_synchronously
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+            builder: (context) => const ResponsiveLayout(
+              mobileScreenLayout: MobileScreenLayout(),
+            ),
+          ),
+          (route) => false);
     } on FirebaseAuthException catch (e) {
       setState(
         () {
@@ -84,7 +103,7 @@ class _AuthPageState extends State<AuthPage> {
   Widget _errorMessage() {
     return Center(
       child: Text(
-        errorMessage == ' ' ? '' : '$errorMessage',
+        errorMessage == ' Error : ' ? '' : '$errorMessage',
         style: const TextStyle(color: Palette.textColor),
       ),
     );
@@ -296,6 +315,7 @@ class _AuthPageState extends State<AuthPage> {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Widget _login_register_button() {
     // ignore: sized_box_for_whitespace
     return Container(
@@ -307,7 +327,7 @@ class _AuthPageState extends State<AuthPage> {
           isLogin ? 'Login' : 'Register',
           style: const TextStyle(color: Palette.color5),
         ),
-        onPressed: isLogin ? _signIn : _registerUser,
+        onPressed: isLogin ? _login : _registerUser,
         style: ElevatedButton.styleFrom(
             // ignore: deprecated_member_use
             primary: Palette.appBarColor,
@@ -319,6 +339,7 @@ class _AuthPageState extends State<AuthPage> {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Widget _login_register_text_button() {
     return SizedBox(
       width: 130,

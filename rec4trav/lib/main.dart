@@ -40,7 +40,7 @@ class MainApp extends StatelessWidget {
   }
 }
 
-class Routes {
-  // ignore: constant_identifier_names
-  static const String SPLASH_SCREEN = "/";
-}
+// class Routes {
+//   // ignore: constant_identifier_names
+//   static const String SPLASH_SCREEN = "/";
+// }

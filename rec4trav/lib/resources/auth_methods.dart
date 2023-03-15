@@ -1,5 +1,4 @@
 import 'dart:typed_data';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:rec4trav/Models/User.dart' as model;
@@ -17,7 +16,7 @@ class AuthMethods {
     User currentUser = _auth.currentUser!;
 
     DocumentSnapshot documentSnapshot =
-        await _firestore.collection('users').doc(currentUser.uid).get();
+        await _firestore.collection('RegUser').doc(currentUser.uid).get();
 
     return model.User.fromSnap(documentSnapshot);
   }
@@ -35,6 +34,7 @@ class AuthMethods {
           password.isNotEmpty ||
           username.isNotEmpty ||
           fullname.isNotEmpty ||
+          // ignore: unnecessary_null_comparison
           file != null) {
         UserCredential cred = await _auth.createUserWithEmailAndPassword(
             email: email, password: password);

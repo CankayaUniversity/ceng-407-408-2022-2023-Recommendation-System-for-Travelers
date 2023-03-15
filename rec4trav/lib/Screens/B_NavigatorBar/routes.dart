@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'Pages/ActivityPage.dart';
-import 'Pages/DiscoverPage.dart';
-import 'Pages/MainHome.dart';
-import 'Pages/PostPage.dart';
-import 'Pages/ProfilePage.dart';
+import 'B_Nav_Pages/ActivityPage.dart';
+import 'B_Nav_Pages/DiscoverPage.dart';
+import 'B_Nav_Pages/MainHome.dart';
+import 'B_Nav_Pages/PostPage.dart';
+import 'B_Nav_Pages/ProfilePage.dart';
 
 class Routes extends StatelessWidget {
   final int index;
@@ -13,10 +13,10 @@ class Routes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Widget> pageList = [
-      MainHomePage(),
-      DiscoverPage(),
+      const MainHomePage(),
+      const DiscoverPage(),
       const PostPage(),
-      ActivityPage(),
+      const ActivityPage(),
       ProfilePage(
         uid: FirebaseAuth.instance.currentUser!.uid,
       ),

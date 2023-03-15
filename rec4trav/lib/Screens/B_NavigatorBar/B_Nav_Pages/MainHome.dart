@@ -1,5 +1,5 @@
 // ignore: file_names
-// ignore_for_file: file_names, duplicate_ignore
+// ignore_for_file: file_names, duplicate_ignore, unused_element
 
 import 'package:rec4trav/Models/colors.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import '../../../Models/home_icon_button.dart';
 
 class MainHomePage extends StatefulWidget {
-  MainHomePage();
+  const MainHomePage({super.key});
 
   @override
   MainHomePageState createState() => MainHomePageState();
@@ -58,23 +58,18 @@ class MainHomePageState extends State<MainHomePage>
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const SizedBox(
-                            height: 60,
-                          ),
-                          const Text(
-                            'REC4TRAV',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 35,
-                              fontWeight: FontWeight.bold,
-                            ),
+                          SizedBox(
+                            child: Image.asset('assets/Rec4TravBcPng.png'),
                           ),
                           const SizedBox(
                             height: 20,
                           ),
                           const Text(
-                            '--Recommendation System For Travelers',
-                            style: TextStyle(color: Colors.white, fontSize: 23),
+                            'Recommendation System For Travelers',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 23,
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 20),
@@ -88,14 +83,14 @@ class MainHomePageState extends State<MainHomePage>
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
                                     CatigoryW(
-                                      image: 'assets/rightArrow.png',
+                                      image: 'assets/icons/Gallery.png',
                                       text: 'Photos',
                                       color: const Color(0xFF47B4FF),
                                     ),
                                     CatigoryW(
-                                      image: 'assets/rightArrow.png',
+                                      image: 'assets/icons/Map.png',
                                       text: 'Maps',
-                                      color: const Color(0xFFA885FF),
+                                      color: Color.fromARGB(255, 180, 157, 236),
                                     )
                                   ],
                                 ),
@@ -107,14 +102,14 @@ class MainHomePageState extends State<MainHomePage>
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
                                     CatigoryW(
-                                      image: 'assets/rightArrow.png',
+                                      image: 'assets/icons/Recent.png',
                                       text: 'Recent Places',
-                                      color: const Color(0xFFFD47DF),
+                                      color: Color.fromARGB(255, 31, 172, 148),
                                     ),
                                     CatigoryW(
-                                      image: 'assets/rightArrow.png',
+                                      image: 'assets/icons/Wishlist.png',
                                       text: 'Wishlist',
-                                      color: const Color(0xFFFD8C44),
+                                      color: Color.fromARGB(255, 150, 19, 106),
                                     )
                                   ],
                                 ),

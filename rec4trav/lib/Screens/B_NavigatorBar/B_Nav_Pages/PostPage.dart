@@ -15,6 +15,7 @@ class PostPage extends StatefulWidget {
   const PostPage({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _PostPageState createState() => _PostPageState();
 }
 
@@ -64,7 +65,6 @@ class _PostPageState extends State<PostPage> {
   }
 
   void postImage(String uid, String username, String profImage) async {
-    print(uid + ' ' + username + ' ' + profImage);
     setState(() {
       isLoading = true;
     });
@@ -82,7 +82,6 @@ class _PostPageState extends State<PostPage> {
       if (res == "success") {
         setState(() {
           isLoading = false;
-          print("res is successfull");
         });
         // ignore: use_build_context_synchronously
         showSnackBar(
@@ -91,6 +90,7 @@ class _PostPageState extends State<PostPage> {
         );
         clearImage();
       } else {
+        // ignore: use_build_context_synchronously
         showSnackBar(context, res);
       }
     } catch (err) {
