@@ -63,7 +63,7 @@ class _HomePageState extends ConsumerState<MapPage> {
   bool isReviews = true;
   bool isPhotos = false;
 
-  final key = '<yourkeyhere>';
+  final key = 'APIKEY';
 
   var selectedPlaceDetails;
 
@@ -294,7 +294,9 @@ class _HomePageState extends ConsumerState<MapPage> {
                           )
                         ]),
                       )
-                    : Container(),
+                    : Container(
+                        child: Text("TAHAAA"),
+                      ),
                 searchFlag.searchToggle
                     ? allSearchResults.allReturnedResults.length != 0
                         ? Positioned(
@@ -455,6 +457,7 @@ class _HomePageState extends ConsumerState<MapPage> {
                               !pressedNear
                                   ? IconButton(
                                       onPressed: () {
+                                        print('tahas : ');
                                         if (_debounce?.isActive ?? false)
                                           _debounce?.cancel();
                                         _debounce = Timer(Duration(seconds: 2),
@@ -471,8 +474,10 @@ class _HomePageState extends ConsumerState<MapPage> {
                                           tokenKey =
                                               placesResult['next_page_token'] ??
                                                   'none';
+                                          print('tokens : ' +
+                                              placesResult.toString());
                                           _markers = {};
-                                          placesWithin.forEach((element) {
+                                          allFavoritePlaces.forEach((element) {
                                             _setNearMarker(
                                               LatLng(
                                                   element['geometry']
@@ -495,10 +500,12 @@ class _HomePageState extends ConsumerState<MapPage> {
                                       ))
                                   : IconButton(
                                       onPressed: () {
+                                        print("sa");
                                         if (_debounce?.isActive ?? false)
                                           _debounce?.cancel();
                                         _debounce = Timer(Duration(seconds: 2),
                                             () async {
+                                          print('token : ' + tokenKey);
                                           if (tokenKey != 'none') {
                                             var placesResult =
                                                 await MapServices()

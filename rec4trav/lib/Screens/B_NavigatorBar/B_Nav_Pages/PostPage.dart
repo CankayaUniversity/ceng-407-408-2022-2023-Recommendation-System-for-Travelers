@@ -113,11 +113,11 @@ class _PostPageState extends State<PostPage> {
     });
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-    _descriptionController.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  //   _descriptionController.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {

@@ -32,16 +32,16 @@ class _AuthPageState extends State<AuthPage> {
   final TextEditingController _controllerEmail2 = TextEditingController();
   final TextEditingController _controllerPassword2 = TextEditingController();
 
-  @override
-  void dispose() {
-    super.dispose();
-    _controllerEmail.dispose();
-    _controllerPassword.dispose();
-    _controllerUsername.dispose();
-    _controllerFullname.dispose();
-    _controllerEmail2.dispose();
-    _controllerPassword2.dispose();
-  }
+  //@override
+  // void dispose() {
+  //   super.dispose();
+  //   _controllerEmail.dispose();
+  //   _controllerPassword.dispose();
+  //   _controllerUsername.dispose();
+  //   _controllerFullname.dispose();
+  //   _controllerEmail2.dispose();
+  //   _controllerPassword2.dispose();
+  // }
 
   selectImage() async {
     Uint8List im = await pickImage(ImageSource.gallery);
@@ -59,15 +59,17 @@ class _AuthPageState extends State<AuthPage> {
           username: _controllerUsername.text,
           fullname: _controllerFullname.text,
           file: _image!);
+      print("success:" + res);
       if (res == "success") {
+        print("success");
         if (mounted) {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(
-              builder: (context) => const ResponsiveLayout(
-                mobileScreenLayout: MobileScreenLayout(),
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(
+                builder: (context) => const ResponsiveLayout(
+                  mobileScreenLayout: MobileScreenLayout(),
+                ),
               ),
-            ),
-          );
+              (route) => true);
         }
       } else {
         // ignore: use_build_context_synchronously
