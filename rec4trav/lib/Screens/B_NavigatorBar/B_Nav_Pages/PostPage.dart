@@ -83,15 +83,18 @@ class _PostPageState extends State<PostPage> {
         setState(() {
           isLoading = false;
         });
-        // ignore: use_build_context_synchronously
-        showSnackBar(
-          context,
-          'Posted!',
-        );
+
+        if (mounted) {
+          showSnackBar(
+            context,
+            'Posted!',
+          );
+        }
         clearImage();
       } else {
-        // ignore: use_build_context_synchronously
-        showSnackBar(context, res);
+        if (mounted) {
+          showSnackBar(context, res);
+        }
       }
     } catch (err) {
       setState(() {

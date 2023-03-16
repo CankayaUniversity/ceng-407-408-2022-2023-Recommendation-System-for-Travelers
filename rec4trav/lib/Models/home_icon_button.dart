@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:rec4trav/Screens/MainButtonPages/Favorites.dart';
 import 'package:rec4trav/Screens/MainButtonPages/Maps.dart';
 import 'package:rec4trav/Screens/MainButtonPages/Photos.dart';
@@ -47,16 +46,28 @@ class CatigoryW extends StatelessWidget {
       ),
       onTap: () {
         if (text == 'Wishlist') {
-          Get.to(const WishListPage());
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const WishListPage()),
+          );
         }
         if (text == 'Recent Places') {
-          Get.to(const RecentPlacesPage());
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const RecentPlacesPage()),
+          );
         }
         if (text == 'Maps') {
-          Get.to(const MapPage());
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const MapPage()),
+          );
         }
         if (text == 'Photos') {
-          Get.to(const PhotosPage());
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const PhotosPage()),
+          );
         }
       },
     );

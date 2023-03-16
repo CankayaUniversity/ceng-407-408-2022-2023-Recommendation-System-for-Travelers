@@ -38,6 +38,9 @@ class _AuthPageState extends State<AuthPage> {
     _controllerEmail.dispose();
     _controllerPassword.dispose();
     _controllerUsername.dispose();
+    _controllerFullname.dispose();
+    _controllerEmail2.dispose();
+    _controllerPassword2.dispose();
   }
 
   selectImage() async {
@@ -57,7 +60,6 @@ class _AuthPageState extends State<AuthPage> {
           fullname: _controllerFullname.text,
           file: _image!);
       if (res == "success") {
-        // ignore: use_build_context_synchronously
         if (mounted) {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
@@ -83,7 +85,7 @@ class _AuthPageState extends State<AuthPage> {
       await AuthMethods().loginUser(
           email: _controllerEmail2.text, password: _controllerPassword2.text);
       //Get.offAll(MainPage());
-      // ignore: use_build_context_synchronously
+
       if (mounted) {
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
