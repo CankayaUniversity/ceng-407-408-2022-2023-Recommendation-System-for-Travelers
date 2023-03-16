@@ -90,7 +90,8 @@ class MainHomePageState extends State<MainHomePage>
                                     CatigoryW(
                                       image: 'assets/icons/Map.png',
                                       text: 'Maps',
-                                      color: Color.fromARGB(255, 180, 157, 236),
+                                      color: const Color.fromARGB(
+                                          255, 180, 157, 236),
                                     )
                                   ],
                                 ),
@@ -104,12 +105,14 @@ class MainHomePageState extends State<MainHomePage>
                                     CatigoryW(
                                       image: 'assets/icons/Recent.png',
                                       text: 'Recent Places',
-                                      color: Color.fromARGB(255, 31, 172, 148),
+                                      color: const Color.fromARGB(
+                                          255, 31, 172, 148),
                                     ),
                                     CatigoryW(
                                       image: 'assets/icons/Wishlist.png',
                                       text: 'Wishlist',
-                                      color: Color.fromARGB(255, 150, 19, 106),
+                                      color: const Color.fromARGB(
+                                          255, 150, 19, 106),
                                     )
                                   ],
                                 ),

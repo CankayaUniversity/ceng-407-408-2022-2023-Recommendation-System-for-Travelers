@@ -5,7 +5,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:easy_splash_screen/easy_splash_screen.dart';
-import 'package:rec4trav/Screens/AuthPages/AuthPage.dart';
 import 'package:rec4trav/Screens/StartScreens/IntroductionPage.dart';
 import '../../Models/Palette.dart';
 

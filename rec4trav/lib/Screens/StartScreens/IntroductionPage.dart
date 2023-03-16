@@ -5,7 +5,6 @@ import 'package:intro_screen_onboarding_flutter/introduction.dart';
 import 'package:intro_screen_onboarding_flutter/introscreenonboarding.dart';
 import 'package:rec4trav/Models/Palette.dart';
 import 'package:rec4trav/Screens/AuthPages/AuthPage.dart';
-import 'package:get/get.dart';
 
 class IntroductionPage extends StatelessWidget {
   final List<Introduction> list = [
