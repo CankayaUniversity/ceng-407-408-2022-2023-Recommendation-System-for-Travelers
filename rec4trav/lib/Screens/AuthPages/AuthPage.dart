@@ -84,13 +84,15 @@ class _AuthPageState extends State<AuthPage> {
           email: _controllerEmail2.text, password: _controllerPassword2.text);
       //Get.offAll(MainPage());
       // ignore: use_build_context_synchronously
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(
-            builder: (context) => const ResponsiveLayout(
-              mobileScreenLayout: MobileScreenLayout(),
+      if (mounted) {
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+              builder: (context) => const ResponsiveLayout(
+                mobileScreenLayout: MobileScreenLayout(),
+              ),
             ),
-          ),
-          (route) => false);
+            (route) => false);
+      }
     } on FirebaseAuthException catch (e) {
       setState(
         () {
@@ -119,6 +121,9 @@ class _AuthPageState extends State<AuthPage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
+                style: const TextStyle(
+                  color: Palette.color11,
+                ),
                 cursorColor: Palette.curserColor,
                 controller: _controllerEmail2,
                 decoration: InputDecoration(
@@ -145,6 +150,9 @@ class _AuthPageState extends State<AuthPage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
+                style: const TextStyle(
+                  color: Palette.color11,
+                ),
                 cursorColor: Palette.curserColor,
                 obscureText: true,
                 enableSuggestions: false,
@@ -216,6 +224,9 @@ class _AuthPageState extends State<AuthPage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
+                style: const TextStyle(
+                  color: Palette.color11,
+                ),
                 cursorColor: Palette.curserColor,
                 controller: _controllerEmail,
                 decoration: InputDecoration(
@@ -239,6 +250,9 @@ class _AuthPageState extends State<AuthPage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
+                style: const TextStyle(
+                  color: Palette.color11,
+                ),
                 cursorColor: Palette.curserColor,
                 controller: _controllerUsername,
                 decoration: InputDecoration(
@@ -262,6 +276,9 @@ class _AuthPageState extends State<AuthPage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
+                style: const TextStyle(
+                  color: Palette.color11,
+                ),
                 cursorColor: Palette.curserColor,
                 controller: _controllerFullname,
                 decoration: InputDecoration(
@@ -285,6 +302,9 @@ class _AuthPageState extends State<AuthPage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
+                style: const TextStyle(
+                  color: Palette.color11,
+                ),
                 cursorColor: Palette.curserColor,
                 obscureText: true,
                 enableSuggestions: false,

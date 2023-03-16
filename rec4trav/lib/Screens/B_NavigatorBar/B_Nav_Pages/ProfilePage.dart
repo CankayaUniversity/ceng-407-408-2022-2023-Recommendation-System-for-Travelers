@@ -112,10 +112,13 @@ class _ProfilePageState extends State<ProfilePage> {
                                     function: () async {
                                       await AuthMethods().signOut();
                                       // ignore: use_build_context_synchronously
-                                      Navigator.of(context).pushReplacement(
+                                      if (mounted) {
+                                        Navigator.of(context).pushReplacement(
                                           MaterialPageRoute(
-                                              builder: (context) =>
-                                                  AuthPage()));
+                                            builder: (context) => AuthPage(),
+                                          ),
+                                        );
+                                      }
                                     },
                                   )
                                 : isFollowing

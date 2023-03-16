@@ -6,6 +6,7 @@
 import 'package:flutter/material.dart';
 import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:rec4trav/Screens/AuthPages/AuthPage.dart';
+import 'package:rec4trav/Screens/StartScreens/IntroductionPage.dart';
 import '../../Models/Palette.dart';
 
 class SplashPage extends StatefulWidget {
@@ -25,10 +26,10 @@ class _SplashPageState extends State<SplashPage> {
         width: 700,
         height: 1500,
       ),
-      backgroundColor: Palette.color11,
+      backgroundColor: Palette.color21,
       showLoader: true,
       loadingText: const Text("Loading..."),
-      navigator: AuthPage(),
+      navigator: IntroductionPage(),
       durationInSeconds: 5,
     );
   }

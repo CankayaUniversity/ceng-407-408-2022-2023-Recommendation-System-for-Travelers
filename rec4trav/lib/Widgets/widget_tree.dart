@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rec4trav/Screens/AuthPages/AuthPage.dart';
+import 'package:rec4trav/Screens/StartScreens/splashScreen.dart';
 import 'package:rec4trav/resources/auth_methods.dart';
 import '../Screens/B_NavigatorBar/MainPage.dart';
 
@@ -19,7 +20,7 @@ class _WidgetTreeState extends State<WidgetTree> {
         if (snapshot.hasData) {
           return MainPage();
         } else {
-          return AuthPage();
+          return SplashPage();
         }
       },
     );

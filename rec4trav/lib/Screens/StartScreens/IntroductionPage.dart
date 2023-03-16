@@ -42,7 +42,12 @@ class IntroductionPage extends StatelessWidget {
       backgroudColor: Palette.color41,
       introductionList: list,
       onTapSkipButton: () {
-        Get.offAll(AuthPage());
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => AuthPage(),
+          ),
+        );
       },
     );
   }
