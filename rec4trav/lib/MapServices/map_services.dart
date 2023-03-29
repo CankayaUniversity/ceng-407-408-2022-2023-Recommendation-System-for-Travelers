@@ -8,7 +8,7 @@ import 'dart:convert' as convert;
 import '../MapsModel/auto_complete_result.dart';
 
 class MapServices {
-  final String key = 'AIzaSyAs8d4_1juc1XYNFl58hmKhS4Jtb0ppZ1s';
+  final String key = 'APIKEY';
   final String types = 'geocode';
 
   Future<List<AutoCompleteResult>> searchPlaces(String searchInput) async {
