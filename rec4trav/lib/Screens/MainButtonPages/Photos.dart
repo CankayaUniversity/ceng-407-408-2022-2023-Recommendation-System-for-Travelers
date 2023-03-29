@@ -14,7 +14,7 @@ class _PhotosPageState extends State<PhotosPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Palette.color31,
+      backgroundColor: Palette.color3,
       appBar: AppBar(
         backgroundColor: Palette.appBarColor,
         title: const Text("Photos"),

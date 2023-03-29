@@ -63,7 +63,7 @@ class _HomePageState extends ConsumerState<MapPage> {
   bool isReviews = true;
   bool isPhotos = false;
 
-  final key = 'APIKEY';
+  final key = 'AIzaSyAs8d4_1juc1XYNFl58hmKhS4Jtb0ppZ1s';
 
   var selectedPlaceDetails;
 
@@ -75,9 +75,11 @@ class _HomePageState extends ConsumerState<MapPage> {
   TextEditingController _originController = TextEditingController();
   TextEditingController _destinationController = TextEditingController();
 
+//Cankaya University position : 39.819375, 32.563672
+
 //Initial map position on load
   static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
+    target: LatLng(39.819375, 32.563672),
     zoom: 14.4746,
   );
 
@@ -131,14 +133,14 @@ class _HomePageState extends ConsumerState<MapPage> {
 
     final Uint8List markerIcon;
 
-    if (types.contains('restaurants'))
+    if (types.contains('art_gallery'))
       markerIcon =
           await getBytesFromAsset('assets/mapicons/restaurants.png', 75);
-    else if (types.contains('food'))
+    else if (types.contains('embassy'))
       markerIcon = await getBytesFromAsset('assets/mapicons/food.png', 75);
-    else if (types.contains('school'))
+    else if (types.contains('funeral_home'))
       markerIcon = await getBytesFromAsset('assets/mapicons/schools.png', 75);
-    else if (types.contains('bar'))
+    else if (types.contains('library'))
       markerIcon = await getBytesFromAsset('assets/mapicons/bars.png', 75);
     else if (types.contains('lodging'))
       markerIcon = await getBytesFromAsset('assets/mapicons/hotels.png', 75);
@@ -457,7 +459,6 @@ class _HomePageState extends ConsumerState<MapPage> {
                               !pressedNear
                                   ? IconButton(
                                       onPressed: () {
-                                        print('tahas : ');
                                         if (_debounce?.isActive ?? false)
                                           _debounce?.cancel();
                                         _debounce = Timer(Duration(seconds: 2),
@@ -474,8 +475,7 @@ class _HomePageState extends ConsumerState<MapPage> {
                                           tokenKey =
                                               placesResult['next_page_token'] ??
                                                   'none';
-                                          print('tokens : ' +
-                                              placesResult.toString());
+
                                           _markers = {};
                                           allFavoritePlaces.forEach((element) {
                                             _setNearMarker(
@@ -500,12 +500,10 @@ class _HomePageState extends ConsumerState<MapPage> {
                                       ))
                                   : IconButton(
                                       onPressed: () {
-                                        print("sa");
                                         if (_debounce?.isActive ?? false)
                                           _debounce?.cancel();
                                         _debounce = Timer(Duration(seconds: 2),
                                             () async {
-                                          print('token : ' + tokenKey);
                                           if (tokenKey != 'none') {
                                             var placesResult =
                                                 await MapServices()

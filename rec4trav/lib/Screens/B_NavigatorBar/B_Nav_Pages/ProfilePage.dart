@@ -68,8 +68,10 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Palette.activeColor,
       appBar: AppBar(
-        backgroundColor: Palette.color21,
+        elevation: 20,
+        backgroundColor: Palette.color2,
         title: Text(
           userData['username'] ?? 'Unknown',
         ),
@@ -106,9 +108,9 @@ class _ProfilePageState extends State<ProfilePage> {
                             FirebaseAuth.instance.currentUser?.uid == widget.uid
                                 ? FollowButton(
                                     text: 'Sign Out',
-                                    backgroundColor: Palette.color21,
-                                    textColor: Colors.black,
-                                    borderColor: Colors.grey,
+                                    backgroundColor: Palette.color2,
+                                    textColor: Colors.white,
+                                    borderColor: Colors.transparent,
                                     function: () async {
                                       await AuthMethods().signOut();
                                       // ignore: use_build_context_synchronously
@@ -622,7 +624,7 @@ class _ProfilePageState extends State<ProfilePage> {
 //         },
 //         child: CircleAvatar(
 //           radius: 84,
-//           backgroundColor: Palette.color21,
+//           backgroundColor: Palette.color2,
 //           child: _photo != null
 //               ? ClipRRect(
 //                   borderRadius: BorderRadius.circular(70),
@@ -641,7 +643,7 @@ class _ProfilePageState extends State<ProfilePage> {
 //                   child: const Icon(
 //                     size: 45,
 //                     Icons.camera_alt,
-//                     color: Palette.color11,
+//                     color: Palette.color1,
 //                   ),
 //                 ),
 //         ),
@@ -678,7 +680,7 @@ class _ProfilePageState extends State<ProfilePage> {
 //       width: 350,
 //       height: 60,
 //       decoration: BoxDecoration(
-//           borderRadius: BorderRadius.circular(40), color: Palette.color31),
+//           borderRadius: BorderRadius.circular(40), color: Palette.color3),
 //       child: Row(
 //         children: [
 //           const SizedBox(
@@ -686,7 +688,7 @@ class _ProfilePageState extends State<ProfilePage> {
 //           ),
 //           Text(
 //             title,
-//             style: const TextStyle(color: Palette.color11),
+//             style: const TextStyle(color: Palette.color1),
 //           )
 //         ],
 //       ),

@@ -12,9 +12,9 @@ class ActivityPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Activity'),
-        backgroundColor: Palette.color21,
+        backgroundColor: Palette.color2,
       ),
-      backgroundColor: Palette.color41,
+      backgroundColor: Palette.activeColor,
     );
   }
 }

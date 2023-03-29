@@ -20,7 +20,7 @@ class MainHomePageState extends State<MainHomePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Palette.color1,
+      backgroundColor: Palette.activeColor,
       body: SingleChildScrollView(
         physics: const NeverScrollableScrollPhysics(),
         child: ConstrainedBox(
@@ -47,7 +47,7 @@ class MainHomePageState extends State<MainHomePage>
                           borderRadius: BorderRadius.circular(80),
                           gradient: const LinearGradient(
                             begin: Alignment.bottomLeft,
-                            colors: [Palette.color11, Palette.color21],
+                            colors: [Palette.activeColor, Palette.color3],
                           ),
                         ),
                       ),
@@ -85,7 +85,7 @@ class MainHomePageState extends State<MainHomePage>
                                     CatigoryW(
                                       image: 'assets/icons/Gallery.png',
                                       text: 'Photos',
-                                      color: const Color(0xFF47B4FF),
+                                      color: Palette.color4,
                                     ),
                                     CatigoryW(
                                       image: 'assets/icons/Map.png',

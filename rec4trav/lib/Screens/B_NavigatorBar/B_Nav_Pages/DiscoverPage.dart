@@ -39,10 +39,10 @@ class DiscoverPageState extends State<DiscoverPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Palette.color41,
+      backgroundColor: Palette.activeColor,
       appBar: AppBar(
         title: const Text('Discover'),
-        backgroundColor: Palette.color21,
+        backgroundColor: Palette.color2,
       ),
       body: SingleChildScrollView(
         child: MasonryView(
@@ -60,7 +60,7 @@ class DiscoverPageState extends State<DiscoverPage> {
 // @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
-//       backgroundColor: Palette.color31,
+//       backgroundColor: Palette.color3,
 //       body: SafeArea(
 //           child: GridView.custom(
 //               gridDelegate: SliverQuiltedGridDelegate(
