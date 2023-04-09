@@ -38,12 +38,12 @@ struct MainTabView: View {
                     .tabItem{
                         Image(systemName: "plus.square")
                     }.tag(2)
-                NotificationView()
+                MapView()
                     .onTapGesture {
                         selectedIndex = 3
                     }
                     .tabItem{
-                        Image(systemName: "heart")
+                        Image(systemName: "globe")
                     }.tag(3)
                 ProfileView(user: user)
                     .onTapGesture {
@@ -52,6 +52,7 @@ struct MainTabView: View {
                     .tabItem{
                     Image(systemName: "person")
                 }.tag(4)
+             
                 
             }
             .navigationTitle(tabTitle)
@@ -76,7 +77,7 @@ struct MainTabView: View {
         case 0: return "Feed"
         case 1: return "Explore"
         case 2: return "New Post"
-        case 3: return "Notifications"
+        case 3: return "Places"
         case 4: return "Profile"
         default: return ""
         }

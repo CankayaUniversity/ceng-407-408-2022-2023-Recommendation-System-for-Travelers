@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6704B1CC29E21CA70042C665 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6704B1CB29E21CA70042C665 /* LocationManager.swift */; };
+		6704B1CF29E21F4D0042C665 /* MKCoordinateRegion+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6704B1CE29E21F4D0042C665 /* MKCoordinateRegion+Extensions.swift */; };
+		6704B1D229E222300042C665 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6704B1D129E2222F0042C665 /* MapView.swift */; };
+		6704B1D529E2238B0042C665 /* LocalSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6704B1D429E2238B0042C665 /* LocalSearchService.swift */; };
+		6704B1D829E229250042C665 /* Landmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6704B1D729E229250042C665 /* Landmark.swift */; };
+		6704B1DA29E236B10042C665 /* LandmarkListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6704B1D929E236B10042C665 /* LandmarkListView.swift */; };
+		671AFA5429C8DCA600BF92AC /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671AFA5329C8DCA600BF92AC /* Comment.swift */; };
+		671AFA5629C8DCC000BF92AC /* CommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671AFA5529C8DCC000BF92AC /* CommentsView.swift */; };
+		671AFA5829C8DCC600BF92AC /* CommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671AFA5729C8DCC600BF92AC /* CommentsCell.swift */; };
+		671AFA5B29C8DCE300BF92AC /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671AFA5A29C8DCE300BF92AC /* CommentViewModel.swift */; };
+		671AFA5D29C8DF2F00BF92AC /* CustomInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671AFA5C29C8DF2F00BF92AC /* CustomInputView.swift */; };
 		67E922AC29C32CFC0063AF68 /* Rec4TravApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E922AB29C32CFC0063AF68 /* Rec4TravApp.swift */; };
 		67E922AE29C32CFC0063AF68 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E922AD29C32CFC0063AF68 /* ContentView.swift */; };
 		67E922B029C32CFE0063AF68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67E922AF29C32CFE0063AF68 /* Assets.xcassets */; };
@@ -57,6 +68,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6704B1CB29E21CA70042C665 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		6704B1CE29E21F4D0042C665 /* MKCoordinateRegion+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKCoordinateRegion+Extensions.swift"; sourceTree = "<group>"; };
+		6704B1D129E2222F0042C665 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		6704B1D429E2238B0042C665 /* LocalSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalSearchService.swift; sourceTree = "<group>"; };
+		6704B1D729E229250042C665 /* Landmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Landmark.swift; sourceTree = "<group>"; };
+		6704B1D929E236B10042C665 /* LandmarkListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkListView.swift; sourceTree = "<group>"; };
+		671AFA5329C8DCA600BF92AC /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		671AFA5529C8DCC000BF92AC /* CommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsView.swift; sourceTree = "<group>"; };
+		671AFA5729C8DCC600BF92AC /* CommentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsCell.swift; sourceTree = "<group>"; };
+		671AFA5A29C8DCE300BF92AC /* CommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
+		671AFA5C29C8DF2F00BF92AC /* CustomInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputView.swift; sourceTree = "<group>"; };
 		67E922A829C32CFC0063AF68 /* Rec4Trav.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rec4Trav.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67E922AB29C32CFC0063AF68 /* Rec4TravApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rec4TravApp.swift; sourceTree = "<group>"; };
 		67E922AD29C32CFC0063AF68 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -118,6 +140,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6704B1CA29E21C9C0042C665 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				6704B1D629E2291E0042C665 /* Model */,
+				6704B1D329E2237F0042C665 /* Services */,
+				6704B1CD29E21F3D0042C665 /* Extensions */,
+				6704B1CB29E21CA70042C665 /* LocationManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		6704B1CD29E21F3D0042C665 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6704B1CE29E21F4D0042C665 /* MKCoordinateRegion+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		6704B1D029E222270042C665 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				6704B1D129E2222F0042C665 /* MapView.swift */,
+				6704B1D929E236B10042C665 /* LandmarkListView.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		6704B1D329E2237F0042C665 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				6704B1D429E2238B0042C665 /* LocalSearchService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		6704B1D629E2291E0042C665 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6704B1D729E229250042C665 /* Landmark.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		671AFA5929C8DCD300BF92AC /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				671AFA5A29C8DCE300BF92AC /* CommentViewModel.swift */,
+			);
+			path = Comments;
+			sourceTree = "<group>";
+		};
 		67E9229F29C32CFC0063AF68 = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +211,7 @@
 		67E922AA29C32CFC0063AF68 /* Rec4Trav */ = {
 			isa = PBXGroup;
 			children = (
+				6704B1CA29E21C9C0042C665 /* Manager */,
 				67E9232B29C333690063AF68 /* GoogleService-Info.plist */,
 				67E922C529C32D180063AF68 /* Views */,
 				67E922C429C32D170063AF68 /* ViewModels */,
@@ -186,6 +261,7 @@
 			children = (
 				67E922E629C32EE10063AF68 /* User.swift */,
 				67E922E829C32EE80063AF68 /* Post.swift */,
+				671AFA5329C8DCA600BF92AC /* Comment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -193,6 +269,7 @@
 		67E922C429C32D170063AF68 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				671AFA5929C8DCD300BF92AC /* Comments */,
 				67E922F129C32F820063AF68 /* Profile */,
 				67E922F029C32F710063AF68 /* Notifications */,
 				67E922ED29C32F350063AF68 /* Feed */,
@@ -207,6 +284,7 @@
 		67E922C529C32D180063AF68 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6704B1D029E222270042C665 /* Map */,
 				67E9232829C3322A0063AF68 /* UploadPost */,
 				67E9232129C331F10063AF68 /* Search */,
 				67E9231829C331A10063AF68 /* Profile */,
@@ -273,6 +351,8 @@
 		67E9230429C330D50063AF68 /* Comments */ = {
 			isa = PBXGroup;
 			children = (
+				671AFA5529C8DCC000BF92AC /* CommentsView.swift */,
+				671AFA5729C8DCC600BF92AC /* CommentsCell.swift */,
 			);
 			path = Comments;
 			sourceTree = "<group>";
@@ -292,6 +372,7 @@
 				67E9230D29C331380063AF68 /* PostGridView.swift */,
 				67E9230F29C331520063AF68 /* UserCell.swift */,
 				67E9231129C3315C0063AF68 /* UserListView.swift */,
+				671AFA5C29C8DF2F00BF92AC /* CustomInputView.swift */,
 			);
 			path = Items;
 			sourceTree = "<group>";
@@ -420,38 +501,49 @@
 				67E9230B29C3310B0063AF68 /* FeedViewModel.swift in Sources */,
 				67E9231A29C331AB0063AF68 /* ProfileActionButtonView.swift in Sources */,
 				67E9231E29C331C40063AF68 /* UserStatView.swift in Sources */,
+				6704B1D829E229250042C665 /* Landmark.swift in Sources */,
+				6704B1CC29E21CA70042C665 /* LocationManager.swift in Sources */,
 				67E922DB29C32E480063AF68 /* Constants.swift in Sources */,
 				67E922DD29C32E660063AF68 /* TextArea.swift in Sources */,
 				67E922EF29C32F630063AF68 /* FeedCellViewModel.swift in Sources */,
+				6704B1D229E222300042C665 /* MapView.swift in Sources */,
 				67E9230129C330410063AF68 /* RegisterView.swift in Sources */,
 				67E9232329C331F90063AF68 /* SearchBar.swift in Sources */,
 				67E9231029C331520063AF68 /* UserCell.swift in Sources */,
+				6704B1D529E2238B0042C665 /* LocalSearchService.swift in Sources */,
 				67E922E529C32EB50063AF68 /* CustomSecureField.swift in Sources */,
 				67E9231229C3315C0063AF68 /* UserListView.swift in Sources */,
+				671AFA5829C8DCC600BF92AC /* CommentsCell.swift in Sources */,
 				67E9230E29C331380063AF68 /* PostGridView.swift in Sources */,
 				67E9230929C330F50063AF68 /* FeedCell.swift in Sources */,
 				67E922E929C32EE80063AF68 /* Post.swift in Sources */,
+				671AFA5B29C8DCE300BF92AC /* CommentViewModel.swift in Sources */,
 				67E922FC29C330210063AF68 /* MainTabView.swift in Sources */,
 				67E9230329C3304A0063AF68 /* ResetPasswordView.swift in Sources */,
 				67E922D929C32E1F0063AF68 /* UserService.swift in Sources */,
 				67E922E129C32E8C0063AF68 /* Extensions.swift in Sources */,
+				671AFA5D29C8DF2F00BF92AC /* CustomInputView.swift in Sources */,
 				67E922AE29C32CFC0063AF68 /* ContentView.swift in Sources */,
 				67E922AC29C32CFC0063AF68 /* Rec4TravApp.swift in Sources */,
 				67E9230729C330EF0063AF68 /* FeedView.swift in Sources */,
 				67E9232A29C332330063AF68 /* UploadPostView.swift in Sources */,
 				67E922F329C32F900063AF68 /* ProfileViewModel.swift in Sources */,
+				671AFA5629C8DCC000BF92AC /* CommentsView.swift in Sources */,
 				67E9232029C331CC0063AF68 /* ProfileHeaderView.swift in Sources */,
 				67E922F529C32FA50063AF68 /* PostGridViewModel.swift in Sources */,
 				67E922F929C32FCB0063AF68 /* UploadPostViewModel.swift in Sources */,
+				6704B1DA29E236B10042C665 /* LandmarkListView.swift in Sources */,
 				67E9231529C331820063AF68 /* NotificationCell.swift in Sources */,
 				67E922DF29C32E780063AF68 /* imagePicker.swift in Sources */,
 				67E9231C29C331BC0063AF68 /* ProfileView.swift in Sources */,
 				67E9232529C332080063AF68 /* SearchView.swift in Sources */,
 				67E922C729C32D520063AF68 /* ImageUploader.swift in Sources */,
 				67E922E329C32E9F0063AF68 /* CustomTextField.swift in Sources */,
+				6704B1CF29E21F4D0042C665 /* MKCoordinateRegion+Extensions.swift in Sources */,
 				67E922F729C32FB80063AF68 /* SearchViewModel.swift in Sources */,
 				67E922EC29C32F230063AF68 /* AuthViewModel.swift in Sources */,
 				67E922FF29C3303C0063AF68 /* LoginView.swift in Sources */,
+				671AFA5429C8DCA600BF92AC /* Comment.swift in Sources */,
 				67E922E729C32EE10063AF68 /* User.swift in Sources */,
 				67E9231729C331910063AF68 /* NotificationView.swift in Sources */,
 			);
@@ -585,6 +677,8 @@
 				DEVELOPMENT_TEAM = 659FLGR7LF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This app needes to use your location.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needes to use your location.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -614,6 +708,8 @@
 				DEVELOPMENT_TEAM = 659FLGR7LF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This app needes to use your location.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needes to use your location.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
