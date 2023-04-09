@@ -5,7 +5,6 @@ import 'package:intro_screen_onboarding_flutter/introduction.dart';
 import 'package:intro_screen_onboarding_flutter/introscreenonboarding.dart';
 import 'package:rec4trav/Models/Palette.dart';
 import 'package:rec4trav/Screens/AuthPages/AuthPage.dart';
-import 'package:get/get.dart';
 
 class IntroductionPage extends StatelessWidget {
   final List<Introduction> list = [
@@ -35,11 +34,11 @@ class IntroductionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return IntroScreenOnboarding(
       skipTextStyle: const TextStyle(
-        color: Palette.color11,
-        fontSize: 20,
+        color: Palette.color5,
+        fontSize: 25,
       ),
-      foregroundColor: Palette.color11,
-      backgroudColor: Palette.color41,
+      foregroundColor: Palette.color1,
+      backgroudColor: Palette.color3,
       introductionList: list,
       onTapSkipButton: () {
         Navigator.push(

@@ -16,7 +16,7 @@ class BNavigatorState extends State<BNavigator> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      backgroundColor: Palette.color1,
+      backgroundColor: Palette.activeColor,
       currentIndex: _currentIndex,
       onTap: (i) {
         setState(() {
@@ -28,27 +28,27 @@ class BNavigatorState extends State<BNavigator> {
         BottomNavigationBarItem(
           icon: Icon(Icons.home_sharp),
           label: 'Home',
-          backgroundColor: Palette.color21,
+          backgroundColor: Palette.color1,
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.search_rounded),
           label: 'Discover',
-          backgroundColor: Palette.color21,
+          backgroundColor: Palette.color1,
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.post_add),
           label: 'Post',
-          backgroundColor: Palette.color21,
+          backgroundColor: Palette.color1,
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.local_activity),
           label: 'Activity',
-          backgroundColor: Palette.color21,
+          backgroundColor: Palette.color1,
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person),
           label: 'Profile',
-          backgroundColor: Palette.color21,
+          backgroundColor: Palette.color1,
         )
       ],
     );

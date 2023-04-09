@@ -1,4 +1,6 @@
 // ignore: file_names
+// ignore_for_file: file_names, duplicate_ignore
+
 import 'package:flutter/material.dart';
 
 ThemeData lightThemeData(BuildContext context) {
@@ -61,12 +63,12 @@ TextTheme getTextTheme() {
   );
 }
 
-const kPrimaryColor = Color(0xffF76C6C);
+const kPrimaryColor = Color.fromARGB(255, 0, 0, 0);
 // const kSecondaryColor = Color(0xFFFE9901);
 // const kContentColorLightTheme = Color(0xFF1D1D35);
 // const kContentColorDarkTheme = Color(0xFFF5FCF9);
 const kWarningColor = Color(0xFFF3BB1C);
-const kErrorColor = Color.fromARGB(255, 235, 80, 80);
+const kErrorColor = Color.fromARGB(255, 207, 112, 112);
 
 const kDefaultPadding = 20.0;
 

@@ -32,13 +32,16 @@ class _AuthPageState extends State<AuthPage> {
   final TextEditingController _controllerEmail2 = TextEditingController();
   final TextEditingController _controllerPassword2 = TextEditingController();
 
-  @override
-  void dispose() {
-    super.dispose();
-    _controllerEmail.dispose();
-    _controllerPassword.dispose();
-    _controllerUsername.dispose();
-  }
+  //@override
+  // void dispose() {
+  //   super.dispose();
+  //   _controllerEmail.dispose();
+  //   _controllerPassword.dispose();
+  //   _controllerUsername.dispose();
+  //   _controllerFullname.dispose();
+  //   _controllerEmail2.dispose();
+  //   _controllerPassword2.dispose();
+  // }
 
   selectImage() async {
     Uint8List im = await pickImage(ImageSource.gallery);
@@ -56,16 +59,16 @@ class _AuthPageState extends State<AuthPage> {
           username: _controllerUsername.text,
           fullname: _controllerFullname.text,
           file: _image!);
+
       if (res == "success") {
-        // ignore: use_build_context_synchronously
         if (mounted) {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(
-              builder: (context) => const ResponsiveLayout(
-                mobileScreenLayout: MobileScreenLayout(),
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(
+                builder: (context) => const ResponsiveLayout(
+                  mobileScreenLayout: MobileScreenLayout(),
+                ),
               ),
-            ),
-          );
+              (route) => true);
         }
       } else {
         // ignore: use_build_context_synchronously
@@ -83,7 +86,7 @@ class _AuthPageState extends State<AuthPage> {
       await AuthMethods().loginUser(
           email: _controllerEmail2.text, password: _controllerPassword2.text);
       //Get.offAll(MainPage());
-      // ignore: use_build_context_synchronously
+
       if (mounted) {
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
@@ -117,12 +120,18 @@ class _AuthPageState extends State<AuthPage> {
       child: Center(
         child: Column(
           children: [
-            Image.asset('assets/Rec4TravBcPng2.png'),
+            const SizedBox(
+              height: 70,
+            ),
+            Image.asset('assets/Rec4TravBcPng.png'),
+            const SizedBox(
+              height: 70,
+            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
                 style: const TextStyle(
-                  color: Palette.color11,
+                  color: Palette.color2,
                 ),
                 cursorColor: Palette.curserColor,
                 controller: _controllerEmail2,
@@ -130,15 +139,15 @@ class _AuthPageState extends State<AuthPage> {
                   filled: true,
                   fillColor: Palette.fieldColor,
                   hintText: 'E-mail',
-                  hintStyle: const TextStyle(color: Palette.color21),
+                  hintStyle: const TextStyle(color: Palette.color2),
                   prefixIcon: const Icon(Icons.email),
-                  prefixIconColor: Palette.color11,
+                  prefixIconColor: Palette.color1,
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color21),
+                    borderSide: const BorderSide(color: Palette.color2),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color21),
+                    borderSide: const BorderSide(color: Palette.color2),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
@@ -148,10 +157,10 @@ class _AuthPageState extends State<AuthPage> {
               height: 20,
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.fromLTRB(8, 8, 8, 2),
               child: TextFormField(
                 style: const TextStyle(
-                  color: Palette.color11,
+                  color: Palette.color1,
                 ),
                 cursorColor: Palette.curserColor,
                 obscureText: true,
@@ -160,17 +169,17 @@ class _AuthPageState extends State<AuthPage> {
                 controller: _controllerPassword2,
                 decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.key),
-                  prefixIconColor: Palette.color11,
+                  prefixIconColor: Palette.color1,
                   filled: true,
                   fillColor: Palette.fieldColor,
                   hintText: 'Password',
-                  hintStyle: const TextStyle(color: Palette.color21),
+                  hintStyle: const TextStyle(color: Palette.color2),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color21),
+                    borderSide: const BorderSide(color: Palette.color2),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color21),
+                    borderSide: const BorderSide(color: Palette.color2),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
@@ -201,7 +210,7 @@ class _AuthPageState extends State<AuthPage> {
                     : GestureDetector(
                         onTap: selectImage,
                         child: CircleAvatar(
-                          backgroundColor: Palette.color21,
+                          backgroundColor: Palette.color2,
                           radius: 64,
                           child: Container(
                             decoration: BoxDecoration(
@@ -211,7 +220,7 @@ class _AuthPageState extends State<AuthPage> {
                             child: const Icon(
                               size: 45,
                               Icons.add_a_photo_outlined,
-                              color: Color.fromARGB(255, 0, 0, 0),
+                              color: Color.fromARGB(255, 255, 255, 255),
                             ),
                           ),
                         ),
@@ -225,7 +234,7 @@ class _AuthPageState extends State<AuthPage> {
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
                 style: const TextStyle(
-                  color: Palette.color11,
+                  color: Palette.color1,
                 ),
                 cursorColor: Palette.curserColor,
                 controller: _controllerEmail,
@@ -233,15 +242,15 @@ class _AuthPageState extends State<AuthPage> {
                   filled: true,
                   fillColor: Palette.fieldColor,
                   hintText: 'E-mail',
-                  hintStyle: const TextStyle(color: Palette.color21),
+                  hintStyle: const TextStyle(color: Palette.color2),
                   prefixIcon: const Icon(Icons.email),
-                  prefixIconColor: Palette.color11,
+                  prefixIconColor: Palette.color1,
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color21),
+                    borderSide: const BorderSide(color: Palette.color2),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color21),
+                    borderSide: const BorderSide(color: Palette.color2),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
@@ -251,7 +260,7 @@ class _AuthPageState extends State<AuthPage> {
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
                 style: const TextStyle(
-                  color: Palette.color11,
+                  color: Palette.color1,
                 ),
                 cursorColor: Palette.curserColor,
                 controller: _controllerUsername,
@@ -259,15 +268,15 @@ class _AuthPageState extends State<AuthPage> {
                   filled: true,
                   fillColor: Palette.fieldColor,
                   hintText: 'Username',
-                  hintStyle: const TextStyle(color: Palette.color21),
+                  hintStyle: const TextStyle(color: Palette.color2),
                   prefixIcon: const Icon(Icons.person),
-                  prefixIconColor: Palette.color11,
+                  prefixIconColor: Palette.color1,
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color21),
+                    borderSide: const BorderSide(color: Palette.color2),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color21),
+                    borderSide: const BorderSide(color: Palette.color2),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
@@ -277,7 +286,7 @@ class _AuthPageState extends State<AuthPage> {
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
                 style: const TextStyle(
-                  color: Palette.color11,
+                  color: Palette.color1,
                 ),
                 cursorColor: Palette.curserColor,
                 controller: _controllerFullname,
@@ -285,15 +294,15 @@ class _AuthPageState extends State<AuthPage> {
                   filled: true,
                   fillColor: Palette.fieldColor,
                   hintText: 'Full Name',
-                  hintStyle: const TextStyle(color: Palette.color21),
+                  hintStyle: const TextStyle(color: Palette.color2),
                   prefixIcon: const Icon(Icons.text_fields),
-                  prefixIconColor: Palette.color11,
+                  prefixIconColor: Palette.color1,
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color21),
+                    borderSide: const BorderSide(color: Palette.color2),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color21),
+                    borderSide: const BorderSide(color: Palette.color2),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
@@ -303,7 +312,7 @@ class _AuthPageState extends State<AuthPage> {
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
                 style: const TextStyle(
-                  color: Palette.color11,
+                  color: Palette.color1,
                 ),
                 cursorColor: Palette.curserColor,
                 obscureText: true,
@@ -314,15 +323,15 @@ class _AuthPageState extends State<AuthPage> {
                   filled: true,
                   fillColor: Palette.fieldColor,
                   hintText: 'Password',
-                  hintStyle: const TextStyle(color: Palette.color21),
+                  hintStyle: const TextStyle(color: Palette.color2),
                   prefixIcon: const Icon(Icons.key),
-                  prefixIconColor: Palette.color11,
+                  prefixIconColor: Palette.color1,
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color21),
+                    borderSide: const BorderSide(color: Palette.color2),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color21),
+                    borderSide: const BorderSide(color: Palette.color2),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
@@ -338,22 +347,22 @@ class _AuthPageState extends State<AuthPage> {
   Widget _login_register_button() {
     // ignore: sized_box_for_whitespace
     return Container(
-      width: 90,
+      width: 120,
       height: 60,
       child: ElevatedButton(
         // ignore: sort_child_properties_last
         child: Text(
           isLogin ? 'Login' : 'Register',
-          style: const TextStyle(color: Palette.color5),
+          style: const TextStyle(color: Palette.color5, fontSize: 18),
         ),
         onPressed: isLogin ? _login : _registerUser,
         style: ElevatedButton.styleFrom(
-            // ignore: deprecated_member_use
-            primary: Palette.color21,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            textStyle:
-                const TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+          // ignore: deprecated_member_use
+          primary: Palette.color2,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          textStyle: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+        ),
       ),
     );
   }
@@ -373,9 +382,24 @@ class _AuthPageState extends State<AuthPage> {
         },
         child: Text(
           isLogin ? 'Register instead' : 'Login instead',
-          style:
-              const TextStyle(color: Palette.color31, fontFamily: 'WorkSans'),
+          style: const TextStyle(color: Palette.color3, fontFamily: 'WorkSans'),
         ),
+      ),
+    );
+  }
+
+  Widget _forgot_password_text_button() {
+    return TextButton(
+      // ignore: deprecated_member_use
+      style: TextButton.styleFrom(primary: Colors.grey),
+      onPressed: () {
+        setState(() {
+          print("Forgot password");
+        });
+      },
+      child: const Text(
+        'Forgot Password?',
+        style: TextStyle(color: Palette.color3, fontFamily: 'WorkSans'),
       ),
     );
   }
@@ -383,6 +407,7 @@ class _AuthPageState extends State<AuthPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Palette.activeColor,
       body: SingleChildScrollView(
         physics: const NeverScrollableScrollPhysics(),
         child: ConstrainedBox(
@@ -399,14 +424,7 @@ class _AuthPageState extends State<AuthPage> {
                 ),
                 if (isLogin) _loginFields(),
                 if (!isLogin) _registerFields(),
-                SizedBox(
-                  width: 250,
-                  height: 50,
-                  child: _errorMessage(),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
+                _forgot_password_text_button(),
                 _login_register_button(),
                 _login_register_text_button(),
               ],
@@ -416,57 +434,4 @@ class _AuthPageState extends State<AuthPage> {
       ),
     );
   }
-
-  // Future<void> createUserWithEmailAndPassword() async {
-  //   try {
-  //     await Auth().createUserWithEmailAndPassword(
-  //         email: _controllerEmail.text, password: _controllerPassword.text);
-  //     // Navigator.push(
-  //     //   context,
-  //     //   MaterialPageRoute(builder: (context) => MainPage()),
-  //     // );
-  //   } on FirebaseAuthException catch (e) {
-  //     setState(() {
-  //       errorMessage = e.message;
-  //     });
-  //   }
-  // }
-
-  // Widget _title() {
-  //   return Center(
-  //       child: Text(
-  //     isLogin ? "Login" : "Register",
-  //     style: const TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
-  //   ));
-  // }
-
-  // Widget _submitButton() {
-  //   return ElevatedButton(
-  //     onPressed: isLogin ? signInWithEmailAndPassword : register,
-  //     child: Text(isLogin ? 'Login' : 'Register'),
-  //   );
-  // }
-
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //     appBar: AppBar(
-  //       title: _title(),
-  //       backgroundColor: Palette.baseColor,
-  //     ),
-  //     body: Container(
-
-  //       padding: const EdgeInsets.all(20),
-  //       child: Column(
-  //         crossAxisAlignment: CrossAxisAlignment.center,
-  //         mainAxisAlignment: MainAxisAlignment.center,
-  //         children: <Widget>[
-  //           if (isLogin) loginFields(),
-  //           if (!isLogin) RegisterFields(),
-  //           _submitButton(),
-  //           _loginOrRegisterButton(),
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
 }

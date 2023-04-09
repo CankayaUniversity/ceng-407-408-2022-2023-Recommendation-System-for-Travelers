@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:rec4trav/Screens/MainButtonPages/Favorites.dart';
 import 'package:rec4trav/Screens/MainButtonPages/Maps.dart';
 import 'package:rec4trav/Screens/MainButtonPages/Photos.dart';
 import 'package:rec4trav/Screens/MainButtonPages/RecentPlaces.dart';
+
+import 'Palette.dart';
 
 // ignore: must_be_immutable
 class CatigoryW extends StatelessWidget {
@@ -26,7 +27,7 @@ class CatigoryW extends StatelessWidget {
         width: 160,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          color: const Color(0x9F3D416E),
+          color: Palette.card,
         ),
         child: Column(
           children: [
@@ -40,23 +41,35 @@ class CatigoryW extends StatelessWidget {
             ),
             Text(
               text,
-              style: TextStyle(color: color, fontSize: 18),
+              style: const TextStyle(color: Palette.color1, fontSize: 20),
             ),
           ],
         ),
       ),
       onTap: () {
         if (text == 'Wishlist') {
-          Get.to(const WishListPage());
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const WishListPage()),
+          );
         }
         if (text == 'Recent Places') {
-          Get.to(const RecentPlacesPage());
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const RecentPlacesPage()),
+          );
         }
         if (text == 'Maps') {
-          Get.to(const MapPage());
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const MapPage()),
+          );
         }
         if (text == 'Photos') {
-          Get.to(const PhotosPage());
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const PhotosPage()),
+          );
         }
       },
     );

@@ -83,15 +83,18 @@ class _PostPageState extends State<PostPage> {
         setState(() {
           isLoading = false;
         });
-        // ignore: use_build_context_synchronously
-        showSnackBar(
-          context,
-          'Posted!',
-        );
+
+        if (mounted) {
+          showSnackBar(
+            context,
+            'Posted!',
+          );
+        }
         clearImage();
       } else {
-        // ignore: use_build_context_synchronously
-        showSnackBar(context, res);
+        if (mounted) {
+          showSnackBar(context, res);
+        }
       }
     } catch (err) {
       setState(() {
@@ -110,11 +113,11 @@ class _PostPageState extends State<PostPage> {
     });
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-    _descriptionController.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  //   _descriptionController.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -126,7 +129,7 @@ class _PostPageState extends State<PostPage> {
               title: const Text(
                 'Post',
               ),
-              backgroundColor: Palette.color21,
+              backgroundColor: Palette.color2,
             ),
             body: Center(
               child: IconButton(
@@ -136,11 +139,11 @@ class _PostPageState extends State<PostPage> {
                 onPressed: () => _selectImage(context),
               ),
             ),
-            backgroundColor: Palette.color41,
+            backgroundColor: Palette.activeColor,
           )
         : Scaffold(
             appBar: AppBar(
-              backgroundColor: Palette.color21,
+              backgroundColor: Palette.color2,
               leading: IconButton(
                 icon: const Icon(Icons.arrow_back),
                 onPressed: clearImage,

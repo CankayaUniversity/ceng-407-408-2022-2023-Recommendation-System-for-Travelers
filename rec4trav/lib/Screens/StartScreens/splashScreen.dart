@@ -5,7 +5,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:easy_splash_screen/easy_splash_screen.dart';
-import 'package:rec4trav/Screens/AuthPages/AuthPage.dart';
 import 'package:rec4trav/Screens/StartScreens/IntroductionPage.dart';
 import '../../Models/Palette.dart';
 
@@ -21,14 +20,18 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return EasySplashScreen(
+      loadingTextPadding: EdgeInsets.all(10),
+      loaderColor: Colors.white,
+      logoWidth: MediaQuery.of(context).size.width * 0.4,
       logo: Image.asset(
         'assets/Rec4TravBcPng.png',
-        width: 700,
-        height: 1500,
       ),
-      backgroundColor: Palette.color21,
+      backgroundColor: Palette.color3,
       showLoader: true,
-      loadingText: const Text("Loading..."),
+      loadingText: const Text(
+        "Loading...",
+        style: TextStyle(color: Colors.white, fontSize: 20),
+      ),
       navigator: IntroductionPage(),
       durationInSeconds: 5,
     );

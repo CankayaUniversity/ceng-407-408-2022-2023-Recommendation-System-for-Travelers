@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rec4trav/Screens/AuthPages/AuthPage.dart';
 import 'package:rec4trav/Screens/StartScreens/splashScreen.dart';
 import 'package:rec4trav/resources/auth_methods.dart';
-import '../Screens/B_NavigatorBar/MainPage.dart';
+import '../Screens/AuthPages/AuthPage.dart';
 
 class WidgetTree extends StatefulWidget {
   const WidgetTree({super.key});
@@ -18,9 +17,9 @@ class _WidgetTreeState extends State<WidgetTree> {
       stream: AuthMethods().authStateChanges,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return MainPage();
+          return AuthPage();
         } else {
-          return SplashPage();
+          return const SplashPage();
         }
       },
     );
