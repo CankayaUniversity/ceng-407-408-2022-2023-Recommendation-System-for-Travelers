@@ -16,6 +16,7 @@ struct Landmark: Identifiable, Hashable{
         self.placemark.name ?? ""
         
     }
+    
     var title: String{
         self.placemark.title ?? ""
     }
