@@ -15,7 +15,7 @@ struct Rec4TravApp: App {
     }
     var body: some Scene {
         WindowGroup {
-            ContentView().environmentObject(AuthViewModel.shared)
+            ContentView().environmentObject(AuthViewModel.shared).environmentObject(LocalSearchService())
         }
     }
 }
