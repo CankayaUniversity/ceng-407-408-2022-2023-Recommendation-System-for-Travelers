@@ -6,7 +6,7 @@
 import 'package:flutter/material.dart';
 import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:rec4trav/Screens/StartScreens/IntroductionPage.dart';
-import '../../Models/Palette.dart';
+import '../../models/Palette.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -30,7 +30,11 @@ class _SplashPageState extends State<SplashPage> {
       showLoader: true,
       loadingText: const Text(
         "Loading...",
-        style: TextStyle(color: Colors.white, fontSize: 20),
+        style: TextStyle(
+          fontFamily: 'Muller',
+          color: Colors.white,
+          fontSize: 20,
+        ),
       ),
       navigator: IntroductionPage(),
       durationInSeconds: 5,

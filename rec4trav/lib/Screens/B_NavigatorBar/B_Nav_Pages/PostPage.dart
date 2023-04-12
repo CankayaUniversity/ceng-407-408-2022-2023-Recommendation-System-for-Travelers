@@ -6,7 +6,7 @@ import 'dart:typed_data';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:rec4trav/Models/Palette.dart';
+import 'package:rec4trav/models/Palette.dart';
 import '../../../Provider/UserProvider.dart';
 import '../../../Utils/utils.dart';
 import '../../../resources/firestore_methods.dart';
@@ -126,10 +126,13 @@ class _PostPageState extends State<PostPage> {
     return _file == null
         ? Scaffold(
             appBar: AppBar(
+              centerTitle: true,
               title: const Text(
                 'Post',
+                style: TextStyle(
+                    fontFamily: 'Muller', fontWeight: FontWeight.bold),
               ),
-              backgroundColor: Palette.color2,
+              backgroundColor: Palette.darkOrange,
             ),
             body: Center(
               child: IconButton(
@@ -139,11 +142,11 @@ class _PostPageState extends State<PostPage> {
                 onPressed: () => _selectImage(context),
               ),
             ),
-            backgroundColor: Palette.activeColor,
+            backgroundColor: Palette.lightOrange3,
           )
         : Scaffold(
             appBar: AppBar(
-              backgroundColor: Palette.color2,
+              backgroundColor: Palette.darkOrange,
               leading: IconButton(
                 icon: const Icon(Icons.arrow_back),
                 onPressed: clearImage,
