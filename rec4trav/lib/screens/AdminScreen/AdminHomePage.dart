@@ -1,27 +1,28 @@
-// ignore: duplicate_ignore
-// ignore: file_names
-// ignore_for_file: file_names
-
-import 'package:rec4trav/models/Palette.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/src/widgets/placeholder.dart';
 
-class ActivityPage extends StatelessWidget {
-  const ActivityPage({super.key});
+class AdminPage extends StatefulWidget {
+  const AdminPage({super.key});
+
+  @override
+  State<AdminPage> createState() => _AdminPageState();
+}
+
+class _AdminPageState extends State<AdminPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
-          'Activity',
+          'Admin Page',
           style: TextStyle(
             fontFamily: 'Muller',
             fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: Palette.darkOrange,
       ),
-      backgroundColor: Palette.lightOrange3,
     );
   }
 }

@@ -1,10 +1,10 @@
 // ignore: file_names
 // ignore_for_file: file_names, duplicate_ignore, unused_element
 
-import 'package:rec4trav/Models/Palette.dart';
 import 'package:flutter/material.dart';
 
 import '../../../Models/home_icon_button.dart';
+import '../../../models/Palette.dart';
 
 class MainHomePage extends StatefulWidget {
   const MainHomePage({super.key});
@@ -20,7 +20,7 @@ class MainHomePageState extends State<MainHomePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Palette.activeColor,
+      backgroundColor: Palette.lightOrange3,
       body: SingleChildScrollView(
         physics: const NeverScrollableScrollPhysics(),
         child: ConstrainedBox(
@@ -47,7 +47,16 @@ class MainHomePageState extends State<MainHomePage>
                           borderRadius: BorderRadius.circular(80),
                           gradient: const LinearGradient(
                             begin: Alignment.bottomLeft,
-                            colors: [Palette.activeColor, Palette.color3],
+                            colors: [
+                              Palette.darkOrange,
+                              Palette.lightOrange,
+                              Palette.lightGreen,
+                              Palette.darkGreen,
+                              // Palette.lightOrange,
+                              // Palette.lightOrange,
+                              // Palette.lightOrange,
+                              // Palette.darkOrange
+                            ],
                           ),
                         ),
                       ),
@@ -64,11 +73,19 @@ class MainHomePageState extends State<MainHomePage>
                           const SizedBox(
                             height: 20,
                           ),
-                          const Text(
-                            'Recommendation System For Travelers',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 23,
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 5, horizontal: 50),
+                            child: SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.75,
+                              child: const Text(
+                                'Recommendation System For Travelers',
+                                style: TextStyle(
+                                  fontFamily: 'Muller',
+                                  color: Colors.white,
+                                  fontSize: 23,
+                                ),
+                              ),
                             ),
                           ),
                           Padding(
@@ -253,6 +270,7 @@ class MainHomePageState extends State<MainHomePage>
                     ),
                     Text(text,
                         style: const TextStyle(
+                            fontFamily: 'Muller',
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                             fontSize: 20)),
@@ -289,7 +307,10 @@ class MainHomePageState extends State<MainHomePage>
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.left,
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                fontFamily: 'Muller',
+                fontSize: 16,
+                fontWeight: FontWeight.bold),
           ),
         ),
         Container(

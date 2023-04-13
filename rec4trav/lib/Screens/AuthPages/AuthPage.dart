@@ -1,11 +1,11 @@
 // ignore: file_names
-// ignore_for_file: file_names, duplicate_ignore, prefer_const_constructors_in_immutables, use_key_in_widget_constructors
+// ignore_for_file: file_names, duplicate_ignore, prefer_const_constructors_in_immutables, use_key_in_widget_constructors, non_constant_identifier_names
 
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:rec4trav/Models/Palette.dart';
+import 'package:rec4trav/models/Palette.dart';
 import 'package:rec4trav/Utils/utils.dart';
 import '../../Layout/mobile_layout.dart';
 import '../../Layout/responsive_layout.dart';
@@ -22,6 +22,7 @@ class AuthPage extends StatefulWidget {
 class _AuthPageState extends State<AuthPage> {
   String? errorMessage = '';
   bool isLogin = true;
+  bool isAdmin = true;
   Uint8List? _image;
 
   final TextEditingController _controllerEmail = TextEditingController();
@@ -343,6 +344,91 @@ class _AuthPageState extends State<AuthPage> {
     );
   }
 
+  Widget _adminLoginFields() {
+    return Padding(
+      padding: const EdgeInsets.all(20),
+      child: Center(
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 70,
+            ),
+            const Text(
+              'Hi Admin',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 40,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Muller',
+              ),
+            ),
+            const SizedBox(
+              height: 70,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                style: const TextStyle(
+                  color: Palette.color2,
+                ),
+                cursorColor: Palette.curserColor,
+                controller: _controllerEmail2,
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Palette.fieldColor,
+                  hintText: 'E-mail',
+                  hintStyle: const TextStyle(color: Palette.color2),
+                  prefixIcon: const Icon(Icons.email),
+                  prefixIconColor: Palette.color1,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Palette.color2),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Palette.color2),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(8, 8, 8, 2),
+              child: TextFormField(
+                style: const TextStyle(
+                  color: Palette.color1,
+                ),
+                cursorColor: Palette.curserColor,
+                obscureText: true,
+                enableSuggestions: false,
+                autocorrect: false,
+                controller: _controllerPassword2,
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.key),
+                  prefixIconColor: Palette.color1,
+                  filled: true,
+                  fillColor: Palette.fieldColor,
+                  hintText: 'Password',
+                  hintStyle: const TextStyle(color: Palette.color2),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Palette.color2),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Palette.color2),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   // ignore: non_constant_identifier_names
   Widget _login_register_button() {
     // ignore: sized_box_for_whitespace
@@ -353,12 +439,13 @@ class _AuthPageState extends State<AuthPage> {
         // ignore: sort_child_properties_last
         child: Text(
           isLogin ? 'Login' : 'Register',
-          style: const TextStyle(color: Palette.color5, fontSize: 18),
+          style: const TextStyle(
+              fontFamily: 'Muller', color: Palette.color5, fontSize: 18),
         ),
         onPressed: isLogin ? _login : _registerUser,
         style: ElevatedButton.styleFrom(
           // ignore: deprecated_member_use
-          primary: Palette.color2,
+          primary: Palette.darkOrange,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           textStyle: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
@@ -381,8 +468,35 @@ class _AuthPageState extends State<AuthPage> {
           });
         },
         child: Text(
-          isLogin ? 'Register instead' : 'Login instead',
-          style: const TextStyle(color: Palette.color3, fontFamily: 'WorkSans'),
+          !isAdmin && isLogin ? 'Register instead' : 'Login instead',
+          style: const TextStyle(
+            color: Palette.darkBlue,
+            fontFamily: 'Muller',
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _admin_text_button() {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: TextButton(
+        // ignore: deprecated_member_use
+        style: TextButton.styleFrom(primary: Colors.grey),
+        onPressed: () {
+          setState(() {
+            isAdmin = !isAdmin;
+          });
+        },
+        child: Text(
+          isAdmin ? 'Login Admin' : 'Login User',
+          style: const TextStyle(
+            color: Palette.darkBlue,
+            fontFamily: 'Muller',
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );
@@ -399,7 +513,11 @@ class _AuthPageState extends State<AuthPage> {
       },
       child: const Text(
         'Forgot Password?',
-        style: TextStyle(color: Palette.color3, fontFamily: 'WorkSans'),
+        style: TextStyle(
+          color: Palette.darkBlue,
+          fontFamily: 'Muller',
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }
@@ -407,7 +525,7 @@ class _AuthPageState extends State<AuthPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Palette.activeColor,
+      backgroundColor: Palette.lightOrange,
       body: SingleChildScrollView(
         physics: const NeverScrollableScrollPhysics(),
         child: ConstrainedBox(
@@ -422,11 +540,13 @@ class _AuthPageState extends State<AuthPage> {
                 const SizedBox(
                   height: 90,
                 ),
-                if (isLogin) _loginFields(),
-                if (!isLogin) _registerFields(),
-                _forgot_password_text_button(),
+                if (isAdmin && isLogin) _loginFields(),
+                if (isAdmin && !isLogin) _registerFields(),
+                if (!isAdmin) _adminLoginFields(),
+                if (isAdmin) _forgot_password_text_button(),
                 _login_register_button(),
-                _login_register_text_button(),
+                if (isAdmin) _login_register_text_button(),
+                _admin_text_button(),
               ],
             ),
           ),

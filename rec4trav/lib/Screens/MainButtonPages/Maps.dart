@@ -50,7 +50,7 @@ class _HomePageState extends ConsumerState<MapPage> {
   var tappedPoint;
 
   List allFavoritePlaces = [];
-
+  List myPlaces = [];
   String tokenKey = '';
 
   //Page controller for the nice pageview
@@ -128,37 +128,73 @@ class _HomePageState extends ConsumerState<MapPage> {
     });
   }
 
-  _setNearMarker(LatLng point, String label, List types, String status) async {
+  _setNearMarker(LatLng point, String label, List types) async {
     var counter = markerIdCounter++;
-
+// amusement_park
+// aquarium
+// art_gallery
+// campground
+// casino
+// cemetery
+// church
+// hindu_temple
+// mosque
+// museum
+// park
+// rv_park
+// synagogue
+// tourist_attraction
+// zoo
     final Uint8List markerIcon;
-
-    if (types.contains('art_gallery'))
+    print("types: " + types.toString());
+    if (types.contains('amusement_park'))
+      markerIcon = await getBytesFromAsset('assets/mapicons/games.png', 75);
+    else if (types.contains('aquarium'))
       markerIcon =
-          await getBytesFromAsset('assets/mapicons/restaurants.png', 75);
-    else if (types.contains('embassy'))
-      markerIcon = await getBytesFromAsset('assets/mapicons/food.png', 75);
-    else if (types.contains('funeral_home'))
-      markerIcon = await getBytesFromAsset('assets/mapicons/schools.png', 75);
-    else if (types.contains('library'))
-      markerIcon = await getBytesFromAsset('assets/mapicons/bars.png', 75);
-    else if (types.contains('lodging'))
-      markerIcon = await getBytesFromAsset('assets/mapicons/hotels.png', 75);
-    else if (types.contains('store'))
+          await getBytesFromAsset('assets/mapicons/swimming-pools.png', 75);
+    else if (types.contains('art_gallery'))
       markerIcon =
-          await getBytesFromAsset('assets/mapicons/retail-stores.png', 75);
-    else if (types.contains('locality'))
+          await getBytesFromAsset('assets/mapicons/photography.png', 75);
+    else if (types.contains('campground'))
       markerIcon =
-          await getBytesFromAsset('assets/mapicons/local-services.png', 75);
+          await getBytesFromAsset('assets/mapicons/residential-places.png', 75);
+    else if (types.contains('casino'))
+      markerIcon =
+          await getBytesFromAsset('assets/mapicons/entertainment.png', 75);
+    else if (types.contains('cemetery'))
+      markerIcon =
+          await getBytesFromAsset('assets/mapicons/toys-store.png', 75);
+    else if (types.contains('church'))
+      markerIcon =
+          await getBytesFromAsset('assets/mapicons/government.png', 75);
+    else if (types.contains('hindu_temple'))
+      markerIcon =
+          await getBytesFromAsset('assets/mapicons/manufacturing.png', 75);
+    else if (types.contains('mosque'))
+      markerIcon =
+          await getBytesFromAsset('assets/mapicons/photography.png', 75);
+    else if (types.contains('museum'))
+      markerIcon = await getBytesFromAsset('assets/mapicons/museums.png', 75);
+    else if (types.contains('park'))
+      markerIcon = await getBytesFromAsset('assets/mapicons/parks.png', 75);
+    else if (types.contains('rv_park'))
+      markerIcon = await getBytesFromAsset('assets/mapicons/community.png', 75);
+    else if (types.contains('synagogue'))
+      markerIcon =
+          await getBytesFromAsset('assets/mapicons/photography.png', 75);
+    else if (types.contains('tourist_attraction'))
+      markerIcon = await getBytesFromAsset('assets/mapicons/travel.png', 75);
+    else if (types.contains('zoo'))
+      markerIcon =
+          await getBytesFromAsset('assets/mapicons/vacant-land.png', 75);
     else
-      markerIcon = await getBytesFromAsset('assets/mapicons/places.png', 75);
-
+      markerIcon = await getBytesFromAsset('assets/mapicons/default.png', 75);
     final Marker marker = Marker(
         markerId: MarkerId('marker_$counter'),
         position: point,
         onTap: () {},
         icon: BitmapDescriptor.fromBytes(markerIcon));
-
+    myPlaces.add(point);
     setState(() {
       _markers.add(marker);
     });
@@ -296,9 +332,7 @@ class _HomePageState extends ConsumerState<MapPage> {
                           )
                         ]),
                       )
-                    : Container(
-                        child: Text("TAHAAA"),
-                      ),
+                    : Container(),
                 searchFlag.searchToggle
                     ? allSearchResults.allReturnedResults.length != 0
                         ? Positioned(
@@ -458,46 +492,187 @@ class _HomePageState extends ConsumerState<MapPage> {
                                       })),
                               !pressedNear
                                   ? IconButton(
+                                      //NEARBY PLACES BUTTON
                                       onPressed: () {
                                         if (_debounce?.isActive ?? false)
                                           _debounce?.cancel();
-                                        _debounce = Timer(Duration(seconds: 2),
-                                            () async {
-                                          var placesResult = await MapServices()
-                                              .getPlaceDetails(tappedPoint,
-                                                  radiusValue.toInt());
+                                        _debounce = Timer(
+                                          Duration(seconds: 2),
+                                          () async {
+                                            var placesResult =
+                                                await MapServices()
+                                                    .getPlaceDetails(
+                                                        tappedPoint,
+                                                        radiusValue.toInt());
+                                            List libraryPlaces = [];
+                                            List<dynamic> placesWithin =
+                                                placesResult['results'] as List;
+                                            allFavoritePlaces = placesWithin;
 
-                                          List<dynamic> placesWithin =
-                                              placesResult['results'] as List;
+                                            tokenKey = placesResult[
+                                                    'next_page_token'] ??
+                                                'none';
+                                            //List<dynamic> libraryPlaces = [];
+                                            _markers = {};
+                                            allFavoritePlaces
+                                                .forEach((element) {
+                                              element.removeWhere((key,
+                                                      value) =>
+                                                  key == 'business_status' &&
+                                                  value == 'operational');
+                                              print("saa");
+                                              // print("types: " +
+                                              //     element['types'].toString());
+                                              if (element['types']
+                                                      .toString()
+                                                      .contains(
+                                                          'amusement_park') ||
+                                                  element['types']
+                                                      .toString()
+                                                      .contains('aquarium') ||
+                                                  element['types']
+                                                      .toString()
+                                                      .contains(
+                                                          'art_gallery') ||
+                                                  element['types']
+                                                      .toString()
+                                                      .contains('campground') ||
+                                                  element['types']
+                                                      .toString()
+                                                      .contains('casino') ||
+                                                  element['types']
+                                                      .toString()
+                                                      .contains('cemetery') ||
+                                                  element['types']
+                                                      .toString()
+                                                      .contains('church') ||
+                                                  element['types']
+                                                      .toString()
+                                                      .contains(
+                                                          'hindu_temple') ||
+                                                  element['types']
+                                                      .toString()
+                                                      .contains('mosque') ||
+                                                  element['types']
+                                                      .toString()
+                                                      .contains('museum') ||
+                                                  element['types']
+                                                      .toString()
+                                                      .contains('park') ||
+                                                  element['types']
+                                                      .toString()
+                                                      .contains('rv_park') ||
+                                                  element['types']
+                                                      .toString()
+                                                      .contains('synagogue') ||
+                                                  element['types']
+                                                      .toString()
+                                                      .contains(
+                                                          'tourist_attraction') ||
+                                                  element['types']
+                                                      .toString()
+                                                      .contains('zoo')) {
+                                                libraryPlaces.add(element);
+                                              }
+                                            });
+                                            allFavoritePlaces = libraryPlaces;
 
-                                          allFavoritePlaces = placesWithin;
+                                            allFavoritePlaces
+                                                .forEach((element) {
+                                              print("saa");
+                                              _setNearMarker(
+                                                LatLng(
+                                                    element['geometry']
+                                                        ['location']['lat'],
+                                                    element['geometry']
+                                                        ['location']['lng']),
+                                                element['name'],
+                                                element['types'],
+                                              );
+                                            });
+                                            _markersDupe = _markers;
+                                            pressedNear = true;
 
-                                          tokenKey =
-                                              placesResult['next_page_token'] ??
-                                                  'none';
+                                            // allFavoritePlaces
+                                            //     .forEach((element) {
+                                            //   if (element['types']
+                                            //           .toString()
+                                            //           .contains(
+                                            //               'amusement_park') ||
+                                            //       element['types']
+                                            //           .toString()
+                                            //           .contains('aquarium') ||
+                                            //       element['types']
+                                            //           .toString()
+                                            //           .contains(
+                                            //               'art_gallery') ||
+                                            //       element['types']
+                                            //           .toString()
+                                            //           .contains('campground') ||
+                                            //       element['types']
+                                            //           .toString()
+                                            //           .contains('casino') ||
+                                            //       element['types']
+                                            //           .toString()
+                                            //           .contains('cemetery') ||
+                                            //       element['types']
+                                            //           .toString()
+                                            //           .contains('church') ||
+                                            //       element['types']
+                                            //           .toString()
+                                            //           .contains(
+                                            //               'hindu_temple') ||
+                                            //       element['types']
+                                            //           .toString()
+                                            //           .contains('mosque') ||
+                                            //       element['types']
+                                            //           .toString()
+                                            //           .contains('museum') ||
+                                            //       element['types']
+                                            //           .toString()
+                                            //           .contains('park') ||
+                                            //       element['types']
+                                            //           .toString()
+                                            //           .contains('rv_park') ||
+                                            //       element['types']
+                                            //           .toString()
+                                            //           .contains('synagogue') ||
+                                            //       element['types']
+                                            //           .toString()
+                                            //           .contains(
+                                            //               'tourist_attraction') ||
+                                            //       element['types']
+                                            //           .toString()
+                                            //           .contains('zoo')) {
+                                            //     print('element' + element);
+                                            //     libraryPlaces.add(element);
+                                            //   }
+                                            // });
+                                            // print('sad: ' +
+                                            //     libraryPlaces.toString());
+                                            // allFavoritePlaces = libraryPlaces;
 
-                                          _markers = {};
-                                          allFavoritePlaces.forEach((element) {
-                                            _setNearMarker(
-                                              LatLng(
-                                                  element['geometry']
-                                                      ['location']['lat'],
-                                                  element['geometry']
-                                                      ['location']['lng']),
-                                              element['name'],
-                                              element['types'],
-                                              element['business_status'] ??
-                                                  'not available',
-                                            );
-                                          });
-                                          _markersDupe = _markers;
-                                          pressedNear = true;
-                                        });
+                                            // allFavoritePlaces.forEach(
+                                            //   (element) {
+                                            //     _setNearMarker(
+                                            //       LatLng(
+                                            //           element['geometry']
+                                            //               ['location']['lat'],
+                                            //           element['geometry']
+                                            //               ['location']['lng']),
+                                            //       element['name'],
+                                            //       element['types'],
+                                            //     );
+                                            //   },
+                                            // );
+                                          },
+                                        );
                                       },
                                       icon: Icon(
                                         Icons.near_me,
                                         color: Colors.blue,
-                                      ))
+                                      ),
+                                    )
                                   : IconButton(
                                       onPressed: () {
                                         if (_debounce?.isActive ?? false)
@@ -520,26 +695,27 @@ class _HomePageState extends ConsumerState<MapPage> {
                                                     'next_page_token'] ??
                                                 'none';
 
-                                            placesWithin.forEach((element) {
-                                              _setNearMarker(
-                                                LatLng(
-                                                    element['geometry']
-                                                        ['location']['lat'],
-                                                    element['geometry']
-                                                        ['location']['lng']),
-                                                element['name'],
-                                                element['types'],
-                                                element['business_status'] ??
-                                                    'not available',
-                                              );
-                                            });
+                                            placesWithin.forEach(
+                                              (element) {
+                                                _setNearMarker(
+                                                    LatLng(
+                                                        element['geometry']
+                                                            ['location']['lat'],
+                                                        element['geometry']
+                                                                ['location']
+                                                            ['lng']),
+                                                    element['name'],
+                                                    element['types']);
+                                              },
+                                            );
                                           } else {
                                             print('Thats all folks!!');
                                           }
                                         });
                                       },
                                       icon: Icon(Icons.more_time,
-                                          color: Colors.blue)),
+                                          color: Colors.blue),
+                                    ),
                               IconButton(
                                   onPressed: () {
                                     setState(() {
@@ -570,7 +746,8 @@ class _HomePageState extends ConsumerState<MapPage> {
                               itemBuilder: (BuildContext context, int index) {
                                 return _nearbyPlacesList(index);
                               }),
-                        ))
+                        ),
+                      )
                     : Container(),
                 cardTapped
                     ? Positioned(
@@ -1030,6 +1207,7 @@ class _HomePageState extends ConsumerState<MapPage> {
           if (cardTapped) {
             tappedPlaceDetail = await MapServices()
                 .getPlace(allFavoritePlaces[index]['place_id']);
+
             setState(() {});
           }
           moveCameraSlightly();
@@ -1164,8 +1342,7 @@ class _HomePageState extends ConsumerState<MapPage> {
         LatLng(selectedPlace['geometry']['location']['lat'],
             selectedPlace['geometry']['location']['lng']),
         selectedPlace['name'] ?? 'no name',
-        selectedPlace['types'],
-        selectedPlace['business_status'] ?? 'none');
+        selectedPlace['types']);
 
     controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
         target: LatLng(selectedPlace['geometry']['location']['lat'],

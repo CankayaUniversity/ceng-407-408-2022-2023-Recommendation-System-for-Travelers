@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:rec4trav/Models/Palette.dart';
+import 'package:rec4trav/models/Palette.dart';
 
 class RecentPlacesPage extends StatefulWidget {
   const RecentPlacesPage({super.key});
@@ -17,7 +17,12 @@ class _RecentPlacesPageState extends State<RecentPlacesPage> {
       backgroundColor: Palette.color3,
       appBar: AppBar(
         backgroundColor: Palette.appBarColor,
-        title: const Text("Recent Places"),
+        title: const Text(
+          "Recent Places",
+          style: TextStyle(
+            fontFamily: 'Muller',
+          ),
+        ),
       ),
     );
   }

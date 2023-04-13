@@ -41,7 +41,11 @@ class CatigoryW extends StatelessWidget {
             ),
             Text(
               text,
-              style: const TextStyle(color: Palette.color1, fontSize: 20),
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Muller',
+                  color: Palette.darkGreen,
+                  fontSize: 20),
             ),
           ],
         ),
