@@ -69,7 +69,6 @@ class MapServices {
     var response = await http.get(Uri.parse(url));
 
     var json = convert.jsonDecode(response.body);
-
     return json;
   }
 
@@ -82,5 +81,22 @@ class MapServices {
     var json = convert.jsonDecode(response.body);
 
     return json;
+  }
+}
+
+Future<dynamic> getNearbyPlaces(
+    double lat, double lng, int radius, String type, String apiKey) async {
+  final String url =
+      'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=$lat,$lng&radius=$radius&type=$type&key=$apiKey';
+
+  var response = await http.get(Uri.parse(url));
+
+  if (response.statusCode == 200) {
+    var jsonResponse = convert.jsonDecode(response.body);
+    var results = jsonResponse['results'];
+    return results;
+  } else {
+    print('Request failed with status: ${response.statusCode}.');
+    return null;
   }
 }

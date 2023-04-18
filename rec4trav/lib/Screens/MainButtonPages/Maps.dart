@@ -482,7 +482,7 @@ class _HomePageState extends ConsumerState<MapPage> {
                             children: [
                               Expanded(
                                   child: Slider(
-                                      max: 7000.0,
+                                      max: 4500.0,
                                       min: 1000.0,
                                       value: radiusValue,
                                       onChanged: (newVal) {
@@ -507,79 +507,291 @@ class _HomePageState extends ConsumerState<MapPage> {
                                             List libraryPlaces = [];
                                             List<dynamic> placesWithin =
                                                 placesResult['results'] as List;
+
                                             allFavoritePlaces = placesWithin;
 
                                             tokenKey = placesResult[
                                                     'next_page_token'] ??
                                                 'none';
-                                            //List<dynamic> libraryPlaces = [];
-                                            _markers = {};
-                                            allFavoritePlaces
-                                                .forEach((element) {
-                                              element.removeWhere((key,
-                                                      value) =>
-                                                  key == 'business_status' &&
-                                                  value == 'operational');
-                                              print("saa");
-                                              // print("types: " +
-                                              //     element['types'].toString());
-                                              if (element['types']
-                                                      .toString()
-                                                      .contains(
-                                                          'amusement_park') ||
-                                                  element['types']
-                                                      .toString()
-                                                      .contains('aquarium') ||
-                                                  element['types']
-                                                      .toString()
-                                                      .contains(
-                                                          'art_gallery') ||
-                                                  element['types']
-                                                      .toString()
-                                                      .contains('campground') ||
-                                                  element['types']
-                                                      .toString()
-                                                      .contains('casino') ||
-                                                  element['types']
-                                                      .toString()
-                                                      .contains('cemetery') ||
-                                                  element['types']
-                                                      .toString()
-                                                      .contains('church') ||
-                                                  element['types']
-                                                      .toString()
-                                                      .contains(
-                                                          'hindu_temple') ||
-                                                  element['types']
-                                                      .toString()
-                                                      .contains('mosque') ||
-                                                  element['types']
-                                                      .toString()
-                                                      .contains('museum') ||
-                                                  element['types']
-                                                      .toString()
-                                                      .contains('park') ||
-                                                  element['types']
-                                                      .toString()
-                                                      .contains('rv_park') ||
-                                                  element['types']
-                                                      .toString()
-                                                      .contains('synagogue') ||
-                                                  element['types']
-                                                      .toString()
-                                                      .contains(
-                                                          'tourist_attraction') ||
-                                                  element['types']
-                                                      .toString()
-                                                      .contains('zoo')) {
-                                                libraryPlaces.add(element);
+
+                                            var resultsForMuseum =
+                                                await getNearbyPlaces(
+                                                    tappedPoint.latitude,
+                                                    tappedPoint.longitude,
+                                                    radiusValue.toInt(),
+                                                    'museum',
+                                                    key);
+                                            if (resultsForMuseum != null) {
+                                              for (var result
+                                                  in resultsForMuseum) {
+                                                libraryPlaces.add(result);
                                               }
-                                            });
+                                            }
+                                            var resultsForMosque =
+                                                await getNearbyPlaces(
+                                                    tappedPoint.latitude,
+                                                    tappedPoint.longitude,
+                                                    radiusValue.toInt(),
+                                                    'museum',
+                                                    key);
+                                            if (resultsForMosque != null) {
+                                              for (var result
+                                                  in resultsForMosque) {
+                                                libraryPlaces.add(result);
+                                              }
+                                            }
+
+                                            var resultsForAmusement_park =
+                                                await getNearbyPlaces(
+                                                    tappedPoint.latitude,
+                                                    tappedPoint.longitude,
+                                                    radiusValue.toInt(),
+                                                    'amusement_park',
+                                                    key);
+                                            if (resultsForAmusement_park !=
+                                                null) {
+                                              for (var result
+                                                  in resultsForAmusement_park) {
+                                                libraryPlaces.add(result);
+                                              }
+                                            }
+
+                                            var resultsForAquarium =
+                                                await getNearbyPlaces(
+                                                    tappedPoint.latitude,
+                                                    tappedPoint.longitude,
+                                                    radiusValue.toInt(),
+                                                    'aquarium',
+                                                    key);
+                                            if (resultsForAquarium != null) {
+                                              for (var result
+                                                  in resultsForAquarium) {
+                                                libraryPlaces.add(result);
+                                              }
+                                            }
+
+                                            var resultsForArt_gallery =
+                                                await getNearbyPlaces(
+                                                    tappedPoint.latitude,
+                                                    tappedPoint.longitude,
+                                                    radiusValue.toInt(),
+                                                    'art_gallery',
+                                                    key);
+                                            if (resultsForArt_gallery != null) {
+                                              for (var result
+                                                  in resultsForArt_gallery) {
+                                                libraryPlaces.add(result);
+                                              }
+                                            }
+
+                                            var resultsForCampground =
+                                                await getNearbyPlaces(
+                                                    tappedPoint.latitude,
+                                                    tappedPoint.longitude,
+                                                    radiusValue.toInt(),
+                                                    'campground',
+                                                    key);
+                                            if (resultsForCampground != null) {
+                                              for (var result
+                                                  in resultsForCampground) {
+                                                libraryPlaces.add(result);
+                                              }
+                                            }
+
+                                            var resultsForCasino =
+                                                await getNearbyPlaces(
+                                                    tappedPoint.latitude,
+                                                    tappedPoint.longitude,
+                                                    radiusValue.toInt(),
+                                                    'casino',
+                                                    key);
+                                            if (resultsForCasino != null) {
+                                              for (var result
+                                                  in resultsForCasino) {
+                                                libraryPlaces.add(result);
+                                              }
+                                            }
+
+                                            var resultsForCemetery =
+                                                await getNearbyPlaces(
+                                                    tappedPoint.latitude,
+                                                    tappedPoint.longitude,
+                                                    radiusValue.toInt(),
+                                                    'cemetery',
+                                                    key);
+                                            if (resultsForCemetery != null) {
+                                              for (var result
+                                                  in resultsForCemetery) {
+                                                libraryPlaces.add(result);
+                                              }
+                                            }
+
+                                            var resultsForChurch =
+                                                await getNearbyPlaces(
+                                                    tappedPoint.latitude,
+                                                    tappedPoint.longitude,
+                                                    radiusValue.toInt(),
+                                                    'church',
+                                                    key);
+                                            if (resultsForChurch != null) {
+                                              for (var result
+                                                  in resultsForChurch) {
+                                                libraryPlaces.add(result);
+                                              }
+                                            }
+
+                                            var resultsForHindu_temple =
+                                                await getNearbyPlaces(
+                                                    tappedPoint.latitude,
+                                                    tappedPoint.longitude,
+                                                    radiusValue.toInt(),
+                                                    'hindu_temple',
+                                                    key);
+                                            if (resultsForHindu_temple !=
+                                                null) {
+                                              for (var result
+                                                  in resultsForHindu_temple) {
+                                                libraryPlaces.add(result);
+                                              }
+                                            }
+
+                                            var resultsForPark =
+                                                await getNearbyPlaces(
+                                                    tappedPoint.latitude,
+                                                    tappedPoint.longitude,
+                                                    radiusValue.toInt(),
+                                                    'park',
+                                                    key);
+                                            if (resultsForPark != null) {
+                                              for (var result
+                                                  in resultsForPark) {
+                                                libraryPlaces.add(result);
+                                              }
+                                            }
+
+                                            var resultsForRv_park =
+                                                await getNearbyPlaces(
+                                                    tappedPoint.latitude,
+                                                    tappedPoint.longitude,
+                                                    radiusValue.toInt(),
+                                                    'rv_park',
+                                                    key);
+                                            if (resultsForRv_park != null) {
+                                              for (var result
+                                                  in resultsForRv_park) {
+                                                libraryPlaces.add(result);
+                                              }
+                                            }
+                                            var resultsForSynagogue =
+                                                await getNearbyPlaces(
+                                                    tappedPoint.latitude,
+                                                    tappedPoint.longitude,
+                                                    radiusValue.toInt(),
+                                                    'synagogue',
+                                                    key);
+                                            if (resultsForSynagogue != null) {
+                                              for (var result
+                                                  in resultsForSynagogue) {
+                                                libraryPlaces.add(result);
+                                              }
+                                            }
+                                            var resultsForTourist_attraction =
+                                                await getNearbyPlaces(
+                                                    tappedPoint.latitude,
+                                                    tappedPoint.longitude,
+                                                    radiusValue.toInt(),
+                                                    'tourist_attraction',
+                                                    key);
+                                            if (resultsForTourist_attraction !=
+                                                null) {
+                                              for (var result
+                                                  in resultsForTourist_attraction) {
+                                                libraryPlaces.add(result);
+                                              }
+                                            }
+
+                                            var resultsForZoo =
+                                                await getNearbyPlaces(
+                                                    tappedPoint.latitude,
+                                                    tappedPoint.longitude,
+                                                    radiusValue.toInt(),
+                                                    'zoo',
+                                                    key);
+                                            if (resultsForZoo != null) {
+                                              for (var result
+                                                  in resultsForZoo) {
+                                                libraryPlaces.add(result);
+                                              }
+                                            }
+
+                                            _markers = {};
+
+                                            // allFavoritePlaces
+                                            //     .forEach((element) {
+                                            //   element.removeWhere((key,
+                                            //           value) =>
+                                            //       key == 'business_status' &&
+                                            //       value == 'operational');
+
+                                            //   print("types: " +
+                                            //       element['types'].toString());
+                                            //   if (element['types']
+                                            //           .toString()
+                                            //           .contains(
+                                            //               'amusement_park') ||
+                                            //       element['types']
+                                            //           .toString()
+                                            //           .contains('aquarium') ||
+                                            //       element['types']
+                                            //           .toString()
+                                            //           .contains(
+                                            //               'art_gallery') ||
+                                            //       element['types']
+                                            //           .toString()
+                                            //           .contains('campground') ||
+                                            //       element['types']
+                                            //           .toString()
+                                            //           .contains('casino') ||
+                                            //       element['types']
+                                            //           .toString()
+                                            //           .contains('cemetery') ||
+                                            //       element['types']
+                                            //           .toString()
+                                            //           .contains('church') ||
+                                            //       element['types']
+                                            //           .toString()
+                                            //           .contains(
+                                            //               'hindu_temple') ||
+                                            //       element['types']
+                                            //           .toString()
+                                            //           .contains('mosque') ||
+                                            //       element['types']
+                                            //           .toString()
+                                            //           .contains('museum') ||
+                                            //       element['types']
+                                            //           .toString()
+                                            //           .contains('park') ||
+                                            //       element['types']
+                                            //           .toString()
+                                            //           .contains('rv_park') ||
+                                            //       element['types']
+                                            //           .toString()
+                                            //           .contains('synagogue') ||
+                                            //       element['types']
+                                            //           .toString()
+                                            //           .contains(
+                                            //               'tourist_attraction') ||
+                                            //       element['types']
+                                            //           .toString()
+                                            //           .contains('zoo')) {
+                                            //     libraryPlaces.add(element);
+                                            //   }
+                                            // });
                                             allFavoritePlaces = libraryPlaces;
 
                                             allFavoritePlaces
                                                 .forEach((element) {
-                                              print("saa");
+                                              print(libraryPlaces.length);
                                               _setNearMarker(
                                                 LatLng(
                                                     element['geometry']
