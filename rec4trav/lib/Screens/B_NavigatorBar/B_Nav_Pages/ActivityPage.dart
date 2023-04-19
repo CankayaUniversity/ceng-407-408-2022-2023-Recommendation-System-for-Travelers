@@ -19,9 +19,9 @@ class ActivityPage extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: Palette.darkOrange,
+        backgroundColor: Palette.normalBlue,
       ),
-      backgroundColor: Palette.lightOrange3,
+      backgroundColor: Palette.white,
     );
   }
 }

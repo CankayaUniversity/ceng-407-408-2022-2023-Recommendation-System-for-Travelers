@@ -132,7 +132,7 @@ class _PostPageState extends State<PostPage> {
                 style: TextStyle(
                     fontFamily: 'Muller', fontWeight: FontWeight.bold),
               ),
-              backgroundColor: Palette.darkOrange,
+              backgroundColor: Palette.normalBlue,
             ),
             body: Center(
               child: IconButton(
@@ -142,11 +142,11 @@ class _PostPageState extends State<PostPage> {
                 onPressed: () => _selectImage(context),
               ),
             ),
-            backgroundColor: Palette.lightOrange3,
+            backgroundColor: Palette.white,
           )
         : Scaffold(
             appBar: AppBar(
-              backgroundColor: Palette.darkOrange,
+              backgroundColor: Palette.normalBlue,
               leading: IconButton(
                 icon: const Icon(Icons.arrow_back),
                 onPressed: clearImage,

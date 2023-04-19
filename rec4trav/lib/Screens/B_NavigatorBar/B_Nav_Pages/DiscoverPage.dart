@@ -1,7 +1,7 @@
 // ignore: file_names
 // ignore_for_file: file_names, duplicate_ignore
-
-import 'package:flutter_masonry_view/flutter_masonry_view.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/Palette.dart';
@@ -14,32 +14,31 @@ class DiscoverPage extends StatefulWidget {
 }
 
 class DiscoverPageState extends State<DiscoverPage> {
-  final _items = [
-    'assets/images/intro1.jpg',
-    'assets/images/intro2.jpg',
-    'assets/images/intro3.jpg',
-    'assets/images/intro4.jpg',
-    'assets/images/intro5.jpg',
-    'assets/images/intro1.jpg',
-    'assets/images/intro3.jpg',
-    'assets/images/intro4.jpg',
-    'assets/images/intro5.jpg',
-    'assets/images/intro2.jpg',
-    'assets/images/intro1.jpg',
-    'assets/images/intro3.jpg',
-    'assets/images/intro4.jpg',
-    'assets/images/intro5.jpg',
-    'assets/images/intro2.jpg',
-    'assets/images/intro1.jpg',
-    'assets/images/intro3.jpg',
-    'assets/images/intro4.jpg',
-    'assets/images/intro5.jpg',
-    'assets/images/intro2.jpg',
-  ];
+  List<String> imageUrls = [];
+
+  @override
+  void initState() {
+    super.initState();
+    getImages();
+  }
+
+  Future<void> getImages() async {
+    final storage = FirebaseStorage.instance;
+    final ref = storage.ref().child('/profile_images');
+    final ListResult result = await ref.listAll();
+
+    for (final item in result.items) {
+      final url = await item.getDownloadURL();
+      setState(() {
+        imageUrls.add(url);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Palette.lightOrange3,
+      backgroundColor: Palette.white,
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
@@ -49,16 +48,21 @@ class DiscoverPageState extends State<DiscoverPage> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: Palette.darkOrange,
+        backgroundColor: Palette.normalBlue,
       ),
-      body: SingleChildScrollView(
-        child: MasonryView(
-          listOfItem: _items,
-          numberOfColumn: 2,
-          itemBuilder: (item) {
-            return Image.asset(item);
-          },
-        ),
+      body: StaggeredGridView.countBuilder(
+        crossAxisCount: 2,
+        itemCount: imageUrls.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Padding(
+            padding: const EdgeInsets.all(1.5),
+            child: Image.network(imageUrls[index]),
+          );
+        },
+        staggeredTileBuilder: (int index) =>
+            StaggeredTile.count(1, index.isEven ? 1 : 1.3),
+        mainAxisSpacing: 1.0,
+        crossAxisSpacing: 1.0,
       ),
     );
   }

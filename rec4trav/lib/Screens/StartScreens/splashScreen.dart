@@ -26,7 +26,7 @@ class _SplashPageState extends State<SplashPage> {
       logo: Image.asset(
         'assets/Rec4TravBcPng.png',
       ),
-      backgroundColor: Palette.color3,
+      backgroundColor: Palette.normalBlue,
       showLoader: true,
       loadingText: const Text(
         "Loading...",

@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:rec4trav/models/Palette.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class WishListPage extends StatefulWidget {
   const WishListPage({super.key});
@@ -11,12 +12,24 @@ class WishListPage extends StatefulWidget {
 }
 
 class _WishListPageState extends State<WishListPage> {
+  List<String> myList = [];
+  Future<void> loadData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    myList = prefs.getStringList('wishlist') ?? [];
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Palette.color3,
+      backgroundColor: Palette.white,
       appBar: AppBar(
-        backgroundColor: Palette.appBarColor,
+        backgroundColor: Palette.normalBlue,
         title: const Text(
           "Wishlist",
           style: TextStyle(
@@ -24,6 +37,7 @@ class _WishListPageState extends State<WishListPage> {
           ),
         ),
       ),
+      body: Text(myList.toString()),
     );
   }
 }

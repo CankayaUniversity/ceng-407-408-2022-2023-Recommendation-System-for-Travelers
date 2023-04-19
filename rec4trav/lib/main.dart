@@ -32,8 +32,8 @@ class MainApp extends StatelessWidget {
         ],
         child: GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'Flutter',
-          darkTheme: darkThemeData(context),
+          title: 'Rec4Trav',
+          darkTheme: lightThemeData(context),
           theme: lightThemeData(context),
           themeMode: ThemeMode.system,
           home: const WidgetTree(),

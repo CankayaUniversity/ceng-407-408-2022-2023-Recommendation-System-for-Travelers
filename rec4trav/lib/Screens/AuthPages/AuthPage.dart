@@ -22,7 +22,6 @@ class AuthPage extends StatefulWidget {
 class _AuthPageState extends State<AuthPage> {
   String? errorMessage = '';
   bool isLogin = true;
-  bool isAdmin = true;
   Uint8List? _image;
 
   final TextEditingController _controllerEmail = TextEditingController();
@@ -106,14 +105,14 @@ class _AuthPageState extends State<AuthPage> {
     }
   }
 
-  Widget _errorMessage() {
-    return Center(
-      child: Text(
-        errorMessage == ' Error : ' ? '' : '$errorMessage',
-        style: const TextStyle(color: Palette.textColor),
-      ),
-    );
-  }
+  // Widget _errorMessage() {
+  //   return Center(
+  //     child: Text(
+  //       errorMessage == ' Error : ' ? '' : '$errorMessage',
+  //       style: const TextStyle(color: Palette.textColor),
+  //     ),
+  //   );
+  // }
 
   Widget _loginFields() {
     return Padding(
@@ -132,23 +131,23 @@ class _AuthPageState extends State<AuthPage> {
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
                 style: const TextStyle(
-                  color: Palette.color2,
+                  color: Palette.black,
                 ),
-                cursorColor: Palette.curserColor,
+                cursorColor: Palette.black,
                 controller: _controllerEmail2,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Palette.fieldColor,
+                  fillColor: Palette.lightBlue,
                   hintText: 'E-mail',
-                  hintStyle: const TextStyle(color: Palette.color2),
+                  hintStyle: const TextStyle(color: Palette.black),
                   prefixIcon: const Icon(Icons.email),
-                  prefixIconColor: Palette.color1,
+                  prefixIconColor: Palette.black,
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color2),
+                    borderSide: const BorderSide(color: Palette.black),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color2),
+                    borderSide: const BorderSide(color: Palette.black),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
@@ -161,26 +160,26 @@ class _AuthPageState extends State<AuthPage> {
               padding: const EdgeInsets.fromLTRB(8, 8, 8, 2),
               child: TextFormField(
                 style: const TextStyle(
-                  color: Palette.color1,
+                  color: Palette.black,
                 ),
-                cursorColor: Palette.curserColor,
+                cursorColor: Palette.black,
                 obscureText: true,
                 enableSuggestions: false,
                 autocorrect: false,
                 controller: _controllerPassword2,
                 decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.key),
-                  prefixIconColor: Palette.color1,
+                  prefixIconColor: Palette.black,
                   filled: true,
-                  fillColor: Palette.fieldColor,
+                  fillColor: Palette.lightBlue,
                   hintText: 'Password',
-                  hintStyle: const TextStyle(color: Palette.color2),
+                  hintStyle: const TextStyle(color: Palette.black),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color2),
+                    borderSide: const BorderSide(color: Palette.black),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color2),
+                    borderSide: const BorderSide(color: Palette.black),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
@@ -235,23 +234,23 @@ class _AuthPageState extends State<AuthPage> {
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
                 style: const TextStyle(
-                  color: Palette.color1,
+                  color: Palette.black,
                 ),
-                cursorColor: Palette.curserColor,
+                cursorColor: Palette.lightBlue,
                 controller: _controllerEmail,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Palette.fieldColor,
+                  fillColor: Palette.lightBlue,
                   hintText: 'E-mail',
-                  hintStyle: const TextStyle(color: Palette.color2),
+                  hintStyle: const TextStyle(color: Palette.black),
                   prefixIcon: const Icon(Icons.email),
-                  prefixIconColor: Palette.color1,
+                  prefixIconColor: Palette.black,
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color2),
+                    borderSide: const BorderSide(color: Palette.black),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color2),
+                    borderSide: const BorderSide(color: Palette.black),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
@@ -261,23 +260,23 @@ class _AuthPageState extends State<AuthPage> {
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
                 style: const TextStyle(
-                  color: Palette.color1,
+                  color: Palette.black,
                 ),
-                cursorColor: Palette.curserColor,
+                cursorColor: Palette.black,
                 controller: _controllerUsername,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Palette.fieldColor,
+                  fillColor: Palette.lightBlue,
                   hintText: 'Username',
-                  hintStyle: const TextStyle(color: Palette.color2),
+                  hintStyle: const TextStyle(color: Palette.black),
                   prefixIcon: const Icon(Icons.person),
-                  prefixIconColor: Palette.color1,
+                  prefixIconColor: Palette.black,
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color2),
+                    borderSide: const BorderSide(color: Palette.black),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color2),
+                    borderSide: const BorderSide(color: Palette.black),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
@@ -287,23 +286,23 @@ class _AuthPageState extends State<AuthPage> {
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
                 style: const TextStyle(
-                  color: Palette.color1,
+                  color: Palette.black,
                 ),
-                cursorColor: Palette.curserColor,
+                cursorColor: Palette.black,
                 controller: _controllerFullname,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Palette.fieldColor,
+                  fillColor: Palette.lightBlue,
                   hintText: 'Full Name',
-                  hintStyle: const TextStyle(color: Palette.color2),
+                  hintStyle: const TextStyle(color: Palette.black),
                   prefixIcon: const Icon(Icons.text_fields),
-                  prefixIconColor: Palette.color1,
+                  prefixIconColor: Palette.black,
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color2),
+                    borderSide: const BorderSide(color: Palette.black),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color2),
+                    borderSide: const BorderSide(color: Palette.black),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
@@ -315,109 +314,24 @@ class _AuthPageState extends State<AuthPage> {
                 style: const TextStyle(
                   color: Palette.color1,
                 ),
-                cursorColor: Palette.curserColor,
+                cursorColor: Palette.black,
                 obscureText: true,
                 enableSuggestions: false,
                 autocorrect: false,
                 controller: _controllerPassword,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Palette.fieldColor,
+                  fillColor: Palette.lightBlue,
                   hintText: 'Password',
-                  hintStyle: const TextStyle(color: Palette.color2),
+                  hintStyle: const TextStyle(color: Palette.black),
                   prefixIcon: const Icon(Icons.key),
-                  prefixIconColor: Palette.color1,
+                  prefixIconColor: Palette.black,
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color2),
+                    borderSide: const BorderSide(color: Palette.black),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color2),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _adminLoginFields() {
-    return Padding(
-      padding: const EdgeInsets.all(20),
-      child: Center(
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 70,
-            ),
-            const Text(
-              'Hi Admin',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 40,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Muller',
-              ),
-            ),
-            const SizedBox(
-              height: 70,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
-                style: const TextStyle(
-                  color: Palette.color2,
-                ),
-                cursorColor: Palette.curserColor,
-                controller: _controllerEmail2,
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Palette.fieldColor,
-                  hintText: 'E-mail',
-                  hintStyle: const TextStyle(color: Palette.color2),
-                  prefixIcon: const Icon(Icons.email),
-                  prefixIconColor: Palette.color1,
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color2),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color2),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(8, 8, 8, 2),
-              child: TextFormField(
-                style: const TextStyle(
-                  color: Palette.color1,
-                ),
-                cursorColor: Palette.curserColor,
-                obscureText: true,
-                enableSuggestions: false,
-                autocorrect: false,
-                controller: _controllerPassword2,
-                decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.key),
-                  prefixIconColor: Palette.color1,
-                  filled: true,
-                  fillColor: Palette.fieldColor,
-                  hintText: 'Password',
-                  hintStyle: const TextStyle(color: Palette.color2),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color2),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color2),
+                    borderSide: const BorderSide(color: Palette.black),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
@@ -445,7 +359,7 @@ class _AuthPageState extends State<AuthPage> {
         onPressed: isLogin ? _login : _registerUser,
         style: ElevatedButton.styleFrom(
           // ignore: deprecated_member_use
-          primary: Palette.darkOrange,
+          primary: Palette.black,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           textStyle: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
@@ -468,32 +382,9 @@ class _AuthPageState extends State<AuthPage> {
           });
         },
         child: Text(
-          !isAdmin && isLogin ? 'Register instead' : 'Login instead',
+          isLogin ? 'Register instead' : 'Login instead',
           style: const TextStyle(
-            color: Palette.darkBlue,
-            fontFamily: 'Muller',
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _admin_text_button() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: TextButton(
-        // ignore: deprecated_member_use
-        style: TextButton.styleFrom(primary: Colors.grey),
-        onPressed: () {
-          setState(() {
-            isAdmin = !isAdmin;
-          });
-        },
-        child: Text(
-          isAdmin ? 'Login Admin' : 'Login User',
-          style: const TextStyle(
-            color: Palette.darkBlue,
+            color: Palette.lightBlue,
             fontFamily: 'Muller',
             fontWeight: FontWeight.bold,
           ),
@@ -514,7 +405,7 @@ class _AuthPageState extends State<AuthPage> {
       child: const Text(
         'Forgot Password?',
         style: TextStyle(
-          color: Palette.darkBlue,
+          color: Palette.lightBlue,
           fontFamily: 'Muller',
           fontWeight: FontWeight.bold,
         ),
@@ -525,7 +416,7 @@ class _AuthPageState extends State<AuthPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Palette.lightOrange,
+      backgroundColor: Palette.normalBlue,
       body: SingleChildScrollView(
         physics: const NeverScrollableScrollPhysics(),
         child: ConstrainedBox(
@@ -540,13 +431,11 @@ class _AuthPageState extends State<AuthPage> {
                 const SizedBox(
                   height: 90,
                 ),
-                if (isAdmin && isLogin) _loginFields(),
-                if (isAdmin && !isLogin) _registerFields(),
-                if (!isAdmin) _adminLoginFields(),
-                if (isAdmin) _forgot_password_text_button(),
+                if (isLogin) _loginFields(),
+                if (!isLogin) _registerFields(),
+                _forgot_password_text_button(),
                 _login_register_button(),
-                if (isAdmin) _login_register_text_button(),
-                _admin_text_button(),
+                _login_register_text_button(),
               ],
             ),
           ),

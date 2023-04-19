@@ -68,11 +68,11 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Palette.lightOrange3,
+      backgroundColor: Palette.white,
       appBar: AppBar(
         centerTitle: true,
         elevation: 20,
-        backgroundColor: Palette.darkGreen,
+        backgroundColor: Palette.normalBlue,
         title: Text(
           userData['username'] ?? 'Unknown',
           style: const TextStyle(
@@ -112,7 +112,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             FirebaseAuth.instance.currentUser?.uid == widget.uid
                                 ? FollowButton(
                                     text: 'Sign Out',
-                                    backgroundColor: Palette.lightGreen,
+                                    backgroundColor: Palette.normalBlue,
                                     textColor: Colors.white,
                                     borderColor: Colors.transparent,
                                     function: () async {

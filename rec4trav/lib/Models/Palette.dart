@@ -19,20 +19,6 @@ class Palette {
   static const Color color5 = Color(0XFFE8EDE7);
   static const Color color6 = Color(0xffafcbe4);
 
-  static const Color lightOrange3 = Color.fromARGB(103, 255, 216, 169);
-  static const Color lightOrange2 = Color.fromARGB(150, 251, 176, 25);
-  static const Color lightOrange = Color(0xfffbb119);
-  static const Color darkOrange = Color(0xfff6580f);
-
-  static const Color lightGreen2 = Color.fromARGB(171, 30, 175, 98);
-  static const Color lightGreen = Color(0xff1eaf62);
-  static const Color middlegreen = Color(0xff45d840);
-  static const Color darkGreen = Color(0xff45d840);
-
-  static const Color lightBlue2 = Color(0xffFFD8A9);
-  static const Color lightBlue = Color(0xff5bffba);
-  static const Color darkBlue = Color(0xff0bc3a9);
-
   static const Color card = Color.fromARGB(66, 247, 247, 247);
 
   static const Color iconColor21 = Color(0XFF012E4A);
@@ -41,6 +27,16 @@ class Palette {
   static const Color fieldColor = Color.fromARGB(255, 235, 237, 238);
   static const Color curserColor = Color(0XFF036280);
   static const Color borderColor = Color(0XFF036280);
+
+  static const Color white = Color(0XFFFAFAFA);
+  static const Color lightBlue = Color(0XFFC7EEFF);
+  static const Color normalBlue = Color(0XFF0077C0);
+  static const Color black = Color(0XFF1D242B);
+
+// EA907A
+// FBC687
+// F4F7C5
+// AACDBE
 
 // açık turuncu #fbb119
 // koyut turuncu #f6580f

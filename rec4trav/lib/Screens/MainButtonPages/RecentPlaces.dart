@@ -14,9 +14,9 @@ class _RecentPlacesPageState extends State<RecentPlacesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Palette.color3,
+      backgroundColor: Palette.white,
       appBar: AppBar(
-        backgroundColor: Palette.appBarColor,
+        backgroundColor: Palette.normalBlue,
         title: const Text(
           "Recent Places",
           style: TextStyle(
