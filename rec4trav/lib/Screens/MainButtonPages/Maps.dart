@@ -280,7 +280,53 @@ class _HomePageState extends ConsumerState<MapPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Maps'),
+        title: Form(
+          child: TextFormField(
+            style: const TextStyle(color: Palette.white, fontFamily: 'Muller'),
+            cursorColor: Palette.white,
+            controller: searchController,
+            decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.search_outlined),
+                prefixIconColor: Palette.white,
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
+                border: InputBorder.none,
+                hintText: 'Search',
+                hintStyle: TextStyle(color: Palette.white),
+                suffixIcon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        searchToggle = false;
+                        searchController.text = '';
+                        _markers = {};
+                        if (searchFlag.searchToggle) searchFlag.toggleSearch();
+                      });
+                    },
+                    icon: Icon(
+                      Icons.close,
+                      color: Palette.white,
+                    ))),
+            onChanged: (value) {
+              if (_debounce?.isActive ?? false) _debounce?.cancel();
+              _debounce = Timer(Duration(milliseconds: 700), () async {
+                if (value.length > 2) {
+                  if (!searchFlag.searchToggle) {
+                    searchFlag.toggleSearch();
+                    _markers = {};
+                  }
+
+                  List<AutoCompleteResult> searchResults =
+                      await MapServices().searchPlaces(value);
+
+                  allSearchResults.setResults(searchResults);
+                } else {
+                  List<AutoCompleteResult> emptyList = [];
+                  allSearchResults.setResults(emptyList);
+                }
+              });
+            },
+          ),
+        ),
         backgroundColor: Palette.normalBlue,
       ),
       body: SingleChildScrollView(

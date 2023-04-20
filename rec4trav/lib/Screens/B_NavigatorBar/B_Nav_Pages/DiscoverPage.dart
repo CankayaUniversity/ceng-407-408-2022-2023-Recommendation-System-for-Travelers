@@ -1,8 +1,10 @@
 // ignore: file_names
 // ignore_for_file: file_names, duplicate_ignore
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter/material.dart';
+import 'package:rec4trav/screens/B_NavigatorBar/B_Nav_Pages/ProfilePage.dart';
 
 import '../../../models/Palette.dart';
 
@@ -15,7 +17,8 @@ class DiscoverPage extends StatefulWidget {
 
 class DiscoverPageState extends State<DiscoverPage> {
   List<String> imageUrls = [];
-
+  final TextEditingController searchController = TextEditingController();
+  bool isShowUsers = false;
   @override
   void initState() {
     super.initState();
@@ -38,32 +41,103 @@ class DiscoverPageState extends State<DiscoverPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Palette.white,
       appBar: AppBar(
-        centerTitle: true,
-        title: const Text(
-          'Discover',
-          style: TextStyle(
-            fontFamily: 'Muller',
-            fontWeight: FontWeight.bold,
+        backgroundColor: Palette.normalBlue,
+        title: Form(
+          child: TextFormField(
+            style: const TextStyle(color: Palette.white, fontFamily: 'Muller'),
+            cursorColor: Palette.lightBlue,
+            controller: searchController,
+            decoration: const InputDecoration(
+              prefixIcon: const Icon(Icons.search_outlined),
+              prefixIconColor: Palette.white,
+              labelText: 'Search for a user...',
+              labelStyle:
+                  const TextStyle(color: Palette.white, fontFamily: 'Muller'),
+            ),
+            onFieldSubmitted: (String _) {
+              setState(() {
+                isShowUsers = true;
+              });
+              print(_);
+            },
           ),
         ),
-        backgroundColor: Palette.normalBlue,
       ),
-      body: StaggeredGridView.countBuilder(
-        crossAxisCount: 2,
-        itemCount: imageUrls.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Padding(
-            padding: const EdgeInsets.all(1.5),
-            child: Image.network(imageUrls[index]),
-          );
-        },
-        staggeredTileBuilder: (int index) =>
-            StaggeredTile.count(1, index.isEven ? 1 : 1.3),
-        mainAxisSpacing: 1.0,
-        crossAxisSpacing: 1.0,
-      ),
+      body: isShowUsers
+          ? FutureBuilder(
+              future: FirebaseFirestore.instance
+                  .collection('RegUser')
+                  .where(
+                    'username',
+                    isGreaterThanOrEqualTo: searchController.text,
+                  )
+                  .get(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                return ListView.builder(
+                  itemCount: (snapshot.data! as dynamic).docs.length,
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => ProfilePage(
+                            uid: (snapshot.data! as dynamic).docs[index]['uid'],
+                          ),
+                        ),
+                      ),
+                      child: ListTile(
+                        leading: CircleAvatar(
+                          backgroundImage: NetworkImage(
+                            (snapshot.data! as dynamic).docs[index]['photoUrl'],
+                          ),
+                          radius: 16,
+                        ),
+                        title: Text(
+                          (snapshot.data! as dynamic).docs[index]['username'],
+                        ),
+                      ),
+                    );
+                  },
+                );
+              },
+            )
+          : FutureBuilder(
+              future: FirebaseFirestore.instance
+                  .collection('postsFlutter')
+                  .orderBy('datePublished')
+                  .get(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+
+                return StaggeredGridView.countBuilder(
+                  crossAxisCount: 3,
+                  itemCount: (snapshot.data! as dynamic).docs.length,
+                  itemBuilder: (context, index) => Image.network(
+                    (snapshot.data! as dynamic).docs[index]['postUrl'],
+                    fit: BoxFit.cover,
+                  ),
+                  staggeredTileBuilder: (index) => MediaQuery.of(context)
+                              .size
+                              .width >
+                          0.5
+                      ? StaggeredTile.count(
+                          (index % 7 == 0) ? 1 : 1, (index % 7 == 0) ? 1 : 1)
+                      : StaggeredTile.count(
+                          (index % 7 == 0) ? 2 : 1, (index % 7 == 0) ? 2 : 1),
+                  mainAxisSpacing: 2.0,
+                  crossAxisSpacing: 2.0,
+                );
+              },
+            ),
     );
   }
 }

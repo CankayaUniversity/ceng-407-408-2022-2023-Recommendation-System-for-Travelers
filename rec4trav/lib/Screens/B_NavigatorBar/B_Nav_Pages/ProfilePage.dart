@@ -195,6 +195,42 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ),
               ),
+              const Divider(),
+              FutureBuilder(
+                future: FirebaseFirestore.instance
+                    .collection('postsFlutter')
+                    .where('uid', isEqualTo: widget.uid)
+                    .get(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+
+                  return GridView.builder(
+                    shrinkWrap: true,
+                    itemCount: (snapshot.data! as dynamic).docs.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      crossAxisSpacing: 5,
+                      mainAxisSpacing: 1.5,
+                      childAspectRatio: 1,
+                    ),
+                    itemBuilder: (context, index) {
+                      DocumentSnapshot snap =
+                          (snapshot.data! as dynamic).docs[index];
+                      return Container(
+                        child: Image(
+                          image: NetworkImage(snap['postUrl']),
+                          fit: BoxFit.cover,
+                        ),
+                      );
+                    },
+                  );
+                },
+              ),
             ],
           ),
         )

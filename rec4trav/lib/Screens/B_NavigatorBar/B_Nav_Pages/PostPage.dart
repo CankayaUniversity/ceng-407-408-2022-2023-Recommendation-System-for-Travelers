@@ -138,6 +138,7 @@ class _PostPageState extends State<PostPage> {
               child: IconButton(
                 icon: const Icon(
                   Icons.upload,
+                  color: Palette.normalBlue,
                 ),
                 onPressed: () => _selectImage(context),
               ),
