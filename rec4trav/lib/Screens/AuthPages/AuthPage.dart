@@ -116,16 +116,19 @@ class _AuthPageState extends State<AuthPage> {
 
   Widget _loginFields() {
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.symmetric(horizontal: 25),
       child: Center(
         child: Column(
           children: [
             const SizedBox(
-              height: 70,
+              height: 50,
             ),
-            Image.asset('assets/Rec4TravBcPng.png'),
+            Image.asset(
+              'assets/rec4travlogo2.png',
+              width: 300,
+            ),
             const SizedBox(
-              height: 70,
+              height: 50,
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -137,7 +140,7 @@ class _AuthPageState extends State<AuthPage> {
                 controller: _controllerEmail2,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Palette.lightBlue,
+                  fillColor: Palette.lightBlue2,
                   hintText: 'E-mail',
                   hintStyle: const TextStyle(color: Palette.black),
                   prefixIcon: const Icon(Icons.email),
@@ -152,9 +155,6 @@ class _AuthPageState extends State<AuthPage> {
                   ),
                 ),
               ),
-            ),
-            const SizedBox(
-              height: 20,
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(8, 8, 8, 2),
@@ -171,7 +171,7 @@ class _AuthPageState extends State<AuthPage> {
                   prefixIcon: const Icon(Icons.key),
                   prefixIconColor: Palette.black,
                   filled: true,
-                  fillColor: Palette.lightBlue,
+                  fillColor: Palette.lightBlue2,
                   hintText: 'Password',
                   hintStyle: const TextStyle(color: Palette.black),
                   focusedBorder: OutlineInputBorder(
@@ -193,7 +193,7 @@ class _AuthPageState extends State<AuthPage> {
 
   Widget _registerFields() {
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.symmetric(horizontal: 25),
       child: Center(
         child: Column(
           children: [
@@ -210,7 +210,7 @@ class _AuthPageState extends State<AuthPage> {
                     : GestureDetector(
                         onTap: selectImage,
                         child: CircleAvatar(
-                          backgroundColor: Palette.color2,
+                          backgroundColor: Palette.black,
                           radius: 64,
                           child: Container(
                             decoration: BoxDecoration(
@@ -240,7 +240,7 @@ class _AuthPageState extends State<AuthPage> {
                 controller: _controllerEmail,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Palette.lightBlue,
+                  fillColor: Palette.lightBlue2,
                   hintText: 'E-mail',
                   hintStyle: const TextStyle(color: Palette.black),
                   prefixIcon: const Icon(Icons.email),
@@ -266,7 +266,7 @@ class _AuthPageState extends State<AuthPage> {
                 controller: _controllerUsername,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Palette.lightBlue,
+                  fillColor: Palette.lightBlue2,
                   hintText: 'Username',
                   hintStyle: const TextStyle(color: Palette.black),
                   prefixIcon: const Icon(Icons.person),
@@ -292,7 +292,7 @@ class _AuthPageState extends State<AuthPage> {
                 controller: _controllerFullname,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Palette.lightBlue,
+                  fillColor: Palette.lightBlue2,
                   hintText: 'Full Name',
                   hintStyle: const TextStyle(color: Palette.black),
                   prefixIcon: const Icon(Icons.text_fields),
@@ -321,7 +321,7 @@ class _AuthPageState extends State<AuthPage> {
                 controller: _controllerPassword,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Palette.lightBlue,
+                  fillColor: Palette.lightBlue2,
                   hintText: 'Password',
                   hintStyle: const TextStyle(color: Palette.black),
                   prefixIcon: const Icon(Icons.key),
@@ -337,6 +337,9 @@ class _AuthPageState extends State<AuthPage> {
                 ),
               ),
             ),
+            const SizedBox(
+              height: 20,
+            )
           ],
         ),
       ),
@@ -370,21 +373,61 @@ class _AuthPageState extends State<AuthPage> {
 
   // ignore: non_constant_identifier_names
   Widget _login_register_text_button() {
-    return SizedBox(
-      width: 130,
-      height: 70,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 70, vertical: 0),
+      child: SizedBox(
+        width: 280,
+        height: 70,
+        child: Row(
+          children: [
+            Text(
+              isLogin
+                  ? "Don't you have an account?"
+                  : 'Already have an account?',
+              style: const TextStyle(
+                color: Palette.black,
+                fontFamily: 'Muller',
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            TextButton(
+              // ignore: deprecated_member_use
+              style: TextButton.styleFrom(primary: Colors.grey),
+              onPressed: () {
+                setState(() {
+                  isLogin = !isLogin;
+                });
+              },
+              child: Text(
+                isLogin ? "Register" : 'Login',
+                style: const TextStyle(
+                  color: Palette.normalBlue,
+                  fontFamily: 'Muller',
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _forgot_password_text_button() {
+    return Padding(
+      padding: EdgeInsets.only(left: 200),
       child: TextButton(
         // ignore: deprecated_member_use
         style: TextButton.styleFrom(primary: Colors.grey),
         onPressed: () {
           setState(() {
-            isLogin = !isLogin;
+            print("Forgot password");
           });
         },
-        child: Text(
-          isLogin ? 'Register instead' : 'Login instead',
-          style: const TextStyle(
-            color: Palette.lightBlue,
+        child: const Text(
+          'Forgot Password?',
+          style: TextStyle(
+            color: Palette.normalBlue,
             fontFamily: 'Muller',
             fontWeight: FontWeight.bold,
           ),
@@ -393,30 +436,10 @@ class _AuthPageState extends State<AuthPage> {
     );
   }
 
-  Widget _forgot_password_text_button() {
-    return TextButton(
-      // ignore: deprecated_member_use
-      style: TextButton.styleFrom(primary: Colors.grey),
-      onPressed: () {
-        setState(() {
-          print("Forgot password");
-        });
-      },
-      child: const Text(
-        'Forgot Password?',
-        style: TextStyle(
-          color: Palette.lightBlue,
-          fontFamily: 'Muller',
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Palette.normalBlue,
+      backgroundColor: Palette.white,
       body: SingleChildScrollView(
         physics: const NeverScrollableScrollPhysics(),
         child: ConstrainedBox(
@@ -433,7 +456,7 @@ class _AuthPageState extends State<AuthPage> {
                 ),
                 if (isLogin) _loginFields(),
                 if (!isLogin) _registerFields(),
-                _forgot_password_text_button(),
+                if (isLogin) _forgot_password_text_button(),
                 _login_register_button(),
                 _login_register_text_button(),
               ],

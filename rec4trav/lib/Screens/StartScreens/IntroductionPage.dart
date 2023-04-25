@@ -36,11 +36,11 @@ class IntroductionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return IntroScreenOnboarding(
       skipTextStyle: const TextStyle(
-        color: Palette.lightBlue,
+        color: Palette.black,
         fontSize: 25,
       ),
-      foregroundColor: Palette.lightBlue,
-      backgroudColor: Palette.normalBlue,
+      foregroundColor: Palette.normalBlue,
+      backgroudColor: Palette.white,
       introductionList: list,
       onTapSkipButton: () {
         Navigator.push(

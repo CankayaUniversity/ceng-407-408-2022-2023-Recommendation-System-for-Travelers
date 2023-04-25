@@ -27,7 +27,7 @@ class CatigoryW extends StatelessWidget {
         width: 160,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          color: Color.fromARGB(153, 247, 247, 247),
+          color: Palette.lightBlue3,
         ),
         child: Column(
           children: [
@@ -44,7 +44,7 @@ class CatigoryW extends StatelessWidget {
               style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Muller',
-                  color: Palette.normalBlue,
+                  color: Palette.black,
                   fontSize: 20),
             ),
           ],

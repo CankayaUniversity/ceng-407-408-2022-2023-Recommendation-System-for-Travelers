@@ -87,6 +87,117 @@ class FireStoreMethods {
     return res;
   }
 
+  Future<List<Map<String, dynamic>>> getWishlistData(String uid) async {
+    List<Map<String, dynamic>> wishlistData = [];
+    await FirebaseFirestore.instance
+        .collection('wishlistFlutter') // Birinci koleksiyon
+        .doc(uid) // Birinci belge
+        .collection('placeName') // İkinci koleksiyon // İkinci belge
+        .get() // Belgeyi getirir
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((DocumentSnapshot documentSnapshot) {
+        var temp = documentSnapshot.data() as Map<String, dynamic>;
+        wishlistData.add(temp);
+      });
+    });
+    return wishlistData;
+  }
+
+  Future<String> addwishlist(String uid, String placename, String placepic,
+      double lat, double lng) async {
+    String res = "Some error occurred";
+    try {
+      _firestore
+          .collection('wishlistFlutter')
+          .doc(uid)
+          .collection('placeName')
+          .doc(placename)
+          .set({
+        'profilePic': placepic,
+        'name': placename,
+        'lat': lat,
+        'lng': lng,
+        'uid': uid,
+        'datePublished': DateTime.now(),
+      });
+      res = 'success';
+    } catch (err) {
+      res = err.toString();
+    }
+    return res;
+  }
+
+  Future<String> addrecentplaces(String uid, double lat, double lng) async {
+    String id = new DateTime.now().millisecondsSinceEpoch.toString();
+    String res = "Some error occurred";
+    try {
+      _firestore
+          .collection('recentPlacesFlutter')
+          .doc(uid)
+          .collection('places')
+          .doc(id)
+          .set({
+        'placeName': 'unknown',
+        'lat': lat,
+        'lng': lng,
+        'date': DateTime.now(),
+        'id': id
+      });
+      res = 'success';
+    } catch (err) {
+      res = err.toString();
+    }
+    return res;
+  }
+
+  Future<String> deletewishlist(String uid, String placename) async {
+    String res = "Some error occurred";
+    try {
+      await _firestore
+          .collection('wishlistFlutter')
+          .doc(uid)
+          .collection('placeName')
+          .doc(placename)
+          .delete();
+      res = 'success';
+    } catch (err) {
+      res = err.toString();
+    }
+    return res;
+  }
+
+  Future<String> deleterecentplaces(String uid, String id) async {
+    String res = "Some error occurred";
+    try {
+      await _firestore
+          .collection('recentPlacesFlutter')
+          .doc(uid)
+          .collection('places')
+          .doc(id)
+          .delete();
+      res = 'success';
+    } catch (err) {
+      res = err.toString();
+    }
+    return res;
+  }
+
+  Future<String> updaterecentplaces(String uid, String id, String name) async {
+    String res = "Some error occurred";
+    try {
+      await _firestore
+          .collection('recentPlacesFlutter')
+          .doc(uid)
+          .collection('places')
+          .doc(id)
+          .update({'placeName': name});
+      res = 'success';
+    } catch (err) {
+      res = err.toString();
+    }
+    return res;
+  }
+
   // Delete Post
   Future<String> deletePost(String postId) async {
     String res = "Some error occurred";
@@ -126,5 +237,21 @@ class FireStoreMethods {
       // ignore: avoid_print
       print(e.toString());
     }
+  }
+
+  Future<List<Map<String, dynamic>>> getRecentPlacesData(String uid) async {
+    List<Map<String, dynamic>> wishlistData = [];
+    await FirebaseFirestore.instance
+        .collection('recentPlacesFlutter') // Birinci koleksiyon
+        .doc(uid) // Birinci belge
+        .collection('places') // İkinci koleksiyon // İkinci belge
+        .get() // Belgeyi getirir
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((DocumentSnapshot documentSnapshot) {
+        var temp = documentSnapshot.data() as Map<String, dynamic>;
+        wishlistData.add(temp);
+      });
+    });
+    return wishlistData;
   }
 }

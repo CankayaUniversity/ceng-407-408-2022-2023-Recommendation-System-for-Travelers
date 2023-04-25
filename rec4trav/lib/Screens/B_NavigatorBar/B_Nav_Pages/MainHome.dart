@@ -20,7 +20,7 @@ class MainHomePageState extends State<MainHomePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Palette.lightBlue,
+      backgroundColor: Palette.lightBlue2,
       body: SingleChildScrollView(
         physics: const NeverScrollableScrollPhysics(),
         child: ConstrainedBox(
@@ -47,7 +47,11 @@ class MainHomePageState extends State<MainHomePage>
                           borderRadius: BorderRadius.circular(80),
                           gradient: const LinearGradient(
                             begin: Alignment.bottomLeft,
-                            colors: [Palette.normalBlue, Palette.black],
+                            colors: [
+                              Palette.white,
+                              Palette.normalBlue,
+                              Colors.black54
+                            ],
                           ),
                         ),
                       ),

@@ -41,11 +41,6 @@ class BNavigatorState extends State<BNavigator> {
           backgroundColor: Palette.normalBlue,
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.local_activity),
-          label: 'Activity',
-          backgroundColor: Palette.normalBlue,
-        ),
-        BottomNavigationBarItem(
           icon: Icon(Icons.person),
           label: 'Profile',
           backgroundColor: Palette.normalBlue,

@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'B_Nav_Pages/ActivityPage.dart';
 import 'B_Nav_Pages/DiscoverPage.dart';
 import 'B_Nav_Pages/MainHome.dart';
 import 'B_Nav_Pages/PostPage.dart';
@@ -16,7 +15,6 @@ class Routes extends StatelessWidget {
       const MainHomePage(),
       const DiscoverPage(),
       const PostPage(),
-      const ActivityPage(),
       ProfilePage(
         uid: FirebaseAuth.instance.currentUser!.uid,
       ),
