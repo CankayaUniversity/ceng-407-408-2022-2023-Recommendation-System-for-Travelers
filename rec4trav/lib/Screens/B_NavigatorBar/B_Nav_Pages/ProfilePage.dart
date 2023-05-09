@@ -4,7 +4,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:rec4trav/Models/Palette.dart';
+import 'package:rec4trav/models/Palette.dart';
 import 'package:rec4trav/Screens/AuthPages/AuthPage.dart';
 import 'package:rec4trav/Utils/utils.dart';
 import 'package:rec4trav/Widgets/button_widget.dart';
@@ -68,14 +68,18 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Palette.activeColor,
+      backgroundColor: Palette.white,
       appBar: AppBar(
+        centerTitle: true,
         elevation: 20,
-        backgroundColor: Palette.color2,
+        backgroundColor: Palette.normalBlue,
         title: Text(
           userData['username'] ?? 'Unknown',
+          style: const TextStyle(
+            fontFamily: 'Muller',
+            fontWeight: FontWeight.bold,
+          ),
         ),
-        centerTitle: false,
       ),
       body: ListView(children: [
         Padding(
@@ -108,7 +112,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             FirebaseAuth.instance.currentUser?.uid == widget.uid
                                 ? FollowButton(
                                     text: 'Sign Out',
-                                    backgroundColor: Palette.color2,
+                                    backgroundColor: Palette.normalBlue,
                                     textColor: Colors.white,
                                     borderColor: Colors.transparent,
                                     function: () async {
@@ -173,6 +177,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: Text(
                   userData['username'] ?? 'Unknown Username',
                   style: const TextStyle(
+                    fontFamily: 'Muller',
                     fontWeight: FontWeight.bold,
                     fontSize: 21,
                   ),
@@ -184,10 +189,47 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: Text(
                   userData['fullname'] ?? 'Unknown Fullname',
                   style: const TextStyle(
+                    fontFamily: 'Muller',
                     fontWeight: FontWeight.bold,
                     fontSize: 17,
                   ),
                 ),
+              ),
+              const Divider(),
+              FutureBuilder(
+                future: FirebaseFirestore.instance
+                    .collection('postsFlutter')
+                    .where('uid', isEqualTo: widget.uid)
+                    .get(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+
+                  return GridView.builder(
+                    shrinkWrap: true,
+                    itemCount: (snapshot.data! as dynamic).docs.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      crossAxisSpacing: 5,
+                      mainAxisSpacing: 1.5,
+                      childAspectRatio: 1,
+                    ),
+                    itemBuilder: (context, index) {
+                      DocumentSnapshot snap =
+                          (snapshot.data! as dynamic).docs[index];
+                      return Container(
+                        child: Image(
+                          image: NetworkImage(snap['postUrl']),
+                          fit: BoxFit.cover,
+                        ),
+                      );
+                    },
+                  );
+                },
               ),
             ],
           ),
@@ -204,6 +246,7 @@ class _ProfilePageState extends State<ProfilePage> {
         Text(
           num.toString(),
           style: const TextStyle(
+            fontFamily: 'Muller',
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
@@ -213,6 +256,7 @@ class _ProfilePageState extends State<ProfilePage> {
           child: Text(
             label,
             style: const TextStyle(
+              fontFamily: 'Muller',
               fontSize: 15,
               fontWeight: FontWeight.bold,
               color: Colors.grey,

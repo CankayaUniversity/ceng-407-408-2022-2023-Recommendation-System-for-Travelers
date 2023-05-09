@@ -47,6 +47,7 @@ class ButtonWidget extends StatelessWidget {
             child: Text(
               text,
               style: TextStyle(
+                fontFamily: 'Muller',
                 foreground: Paint()..shader = textGradient,
                 fontWeight: FontWeight.bold,
                 fontSize: size.height * 0.02,
@@ -94,6 +95,7 @@ class FollowButton extends StatelessWidget {
           child: Text(
             text,
             style: TextStyle(
+              fontFamily: 'Muller',
               color: textColor,
               fontWeight: FontWeight.bold,
             ),

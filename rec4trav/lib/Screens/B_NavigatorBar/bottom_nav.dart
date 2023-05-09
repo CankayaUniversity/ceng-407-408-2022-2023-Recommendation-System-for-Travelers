@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rec4trav/Models/Palette.dart';
+import 'package:rec4trav/models/Palette.dart';
 
 class BNavigator extends StatefulWidget {
   final Function currentIndex;
@@ -16,7 +16,7 @@ class BNavigatorState extends State<BNavigator> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      backgroundColor: Palette.activeColor,
+      backgroundColor: Palette.white,
       currentIndex: _currentIndex,
       onTap: (i) {
         setState(() {
@@ -28,27 +28,27 @@ class BNavigatorState extends State<BNavigator> {
         BottomNavigationBarItem(
           icon: Icon(Icons.home_sharp),
           label: 'Home',
-          backgroundColor: Palette.color1,
+          backgroundColor: Palette.normalBlue,
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.search_rounded),
           label: 'Discover',
-          backgroundColor: Palette.color1,
+          backgroundColor: Palette.normalBlue,
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.post_add),
           label: 'Post',
-          backgroundColor: Palette.color1,
+          backgroundColor: Palette.normalBlue,
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.local_activity),
-          label: 'Activity',
-          backgroundColor: Palette.color1,
+          icon: Icon(Icons.map_outlined),
+          label: 'Friend Map',
+          backgroundColor: Palette.normalBlue,
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person),
           label: 'Profile',
-          backgroundColor: Palette.color1,
+          backgroundColor: Palette.normalBlue,
         )
       ],
     );

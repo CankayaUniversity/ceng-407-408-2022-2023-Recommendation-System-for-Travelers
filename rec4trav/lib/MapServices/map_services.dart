@@ -69,7 +69,6 @@ class MapServices {
     var response = await http.get(Uri.parse(url));
 
     var json = convert.jsonDecode(response.body);
-
     return json;
   }
 
@@ -82,5 +81,57 @@ class MapServices {
     var json = convert.jsonDecode(response.body);
 
     return json;
+  }
+
+  Future<Map<String, dynamic>> getDirectionsFromLatLng(
+      LatLng origin, LatLng destination, String apiKey) async {
+    final String url =
+        'https://maps.googleapis.com/maps/api/directions/json?origin=${origin.latitude},${origin.longitude}&destination=${destination.latitude},${destination.longitude}&key=$apiKey';
+
+    var response = await http.get(Uri.parse(url));
+
+    var json = convert.jsonDecode(response.body);
+
+    var results = {
+      'bounds_ne': LatLng(json['routes'][0]['bounds']['northeast']['lat'],
+          json['routes'][0]['bounds']['northeast']['lng']),
+      'bounds_sw': LatLng(json['routes'][0]['bounds']['southwest']['lat'],
+          json['routes'][0]['bounds']['southwest']['lng']),
+      'start_location': LatLng(
+          json['routes'][0]['legs'][0]['start_location']['lat'],
+          json['routes'][0]['legs'][0]['start_location']['lng']),
+      'end_location': LatLng(
+          json['routes'][0]['legs'][0]['end_location']['lat'],
+          json['routes'][0]['legs'][0]['end_location']['lng']),
+      'polyline': json['routes'][0]['overview_polyline']['points'],
+      'polyline_decoded': decodeEncodedPolyline(
+          json['routes'][0]['overview_polyline']['points'])
+    };
+
+    return results;
+  }
+}
+
+List<LatLng> decodeEncodedPolyline(String encodedString) {
+  List<PointLatLng> decoded = PolylinePoints().decodePolyline(encodedString);
+  return decoded
+      .map((point) => LatLng(point.latitude, point.longitude))
+      .toList();
+}
+
+Future<dynamic> getNearbyPlaces(
+    double lat, double lng, int radius, String type, String apiKey) async {
+  final String url =
+      'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=$lat,$lng&radius=$radius&type=$type&key=$apiKey';
+
+  var response = await http.get(Uri.parse(url));
+
+  if (response.statusCode == 200) {
+    var jsonResponse = convert.jsonDecode(response.body);
+    var results = jsonResponse['results'];
+    return results;
+  } else {
+    print('Request failed with status: ${response.statusCode}.');
+    return null;
   }
 }

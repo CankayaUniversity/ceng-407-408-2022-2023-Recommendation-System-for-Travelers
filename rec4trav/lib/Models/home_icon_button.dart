@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rec4trav/Screens/MainButtonPages/Favorites.dart';
+import 'package:rec4trav/Screens/MainButtonPages/Wishlist.dart';
 import 'package:rec4trav/Screens/MainButtonPages/Maps.dart';
 import 'package:rec4trav/Screens/MainButtonPages/Photos.dart';
 import 'package:rec4trav/Screens/MainButtonPages/RecentPlaces.dart';
@@ -27,7 +27,7 @@ class CatigoryW extends StatelessWidget {
         width: 160,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          color: Palette.card,
+          color: Palette.lightBlue3,
         ),
         child: Column(
           children: [
@@ -41,7 +41,11 @@ class CatigoryW extends StatelessWidget {
             ),
             Text(
               text,
-              style: const TextStyle(color: Palette.color1, fontSize: 20),
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Muller',
+                  color: Palette.black,
+                  fontSize: 20),
             ),
           ],
         ),

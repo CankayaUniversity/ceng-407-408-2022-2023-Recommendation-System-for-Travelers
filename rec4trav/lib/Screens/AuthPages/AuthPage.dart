@@ -1,11 +1,11 @@
 // ignore: file_names
-// ignore_for_file: file_names, duplicate_ignore, prefer_const_constructors_in_immutables, use_key_in_widget_constructors
+// ignore_for_file: file_names, duplicate_ignore, prefer_const_constructors_in_immutables, use_key_in_widget_constructors, non_constant_identifier_names
 
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:rec4trav/Models/Palette.dart';
+import 'package:rec4trav/models/Palette.dart';
 import 'package:rec4trav/Utils/utils.dart';
 import '../../Layout/mobile_layout.dart';
 import '../../Layout/responsive_layout.dart';
@@ -105,81 +105,81 @@ class _AuthPageState extends State<AuthPage> {
     }
   }
 
-  Widget _errorMessage() {
-    return Center(
-      child: Text(
-        errorMessage == ' Error : ' ? '' : '$errorMessage',
-        style: const TextStyle(color: Palette.textColor),
-      ),
-    );
-  }
+  // Widget _errorMessage() {
+  //   return Center(
+  //     child: Text(
+  //       errorMessage == ' Error : ' ? '' : '$errorMessage',
+  //       style: const TextStyle(color: Palette.textColor),
+  //     ),
+  //   );
+  // }
 
   Widget _loginFields() {
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.symmetric(horizontal: 25),
       child: Center(
         child: Column(
           children: [
             const SizedBox(
-              height: 70,
+              height: 50,
             ),
-            Image.asset('assets/Rec4TravBcPng.png'),
+            Image.asset(
+              'assets/rec4travlogo2.png',
+              width: 300,
+            ),
             const SizedBox(
-              height: 70,
+              height: 50,
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
                 style: const TextStyle(
-                  color: Palette.color2,
+                  color: Palette.black,
                 ),
-                cursorColor: Palette.curserColor,
+                cursorColor: Palette.black,
                 controller: _controllerEmail2,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Palette.fieldColor,
+                  fillColor: Palette.lightBlue2,
                   hintText: 'E-mail',
-                  hintStyle: const TextStyle(color: Palette.color2),
+                  hintStyle: const TextStyle(color: Palette.black),
                   prefixIcon: const Icon(Icons.email),
-                  prefixIconColor: Palette.color1,
+                  prefixIconColor: Palette.black,
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color2),
+                    borderSide: const BorderSide(color: Palette.black),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color2),
+                    borderSide: const BorderSide(color: Palette.black),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
               ),
             ),
-            const SizedBox(
-              height: 20,
-            ),
             Padding(
               padding: const EdgeInsets.fromLTRB(8, 8, 8, 2),
               child: TextFormField(
                 style: const TextStyle(
-                  color: Palette.color1,
+                  color: Palette.black,
                 ),
-                cursorColor: Palette.curserColor,
+                cursorColor: Palette.black,
                 obscureText: true,
                 enableSuggestions: false,
                 autocorrect: false,
                 controller: _controllerPassword2,
                 decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.key),
-                  prefixIconColor: Palette.color1,
+                  prefixIconColor: Palette.black,
                   filled: true,
-                  fillColor: Palette.fieldColor,
+                  fillColor: Palette.lightBlue2,
                   hintText: 'Password',
-                  hintStyle: const TextStyle(color: Palette.color2),
+                  hintStyle: const TextStyle(color: Palette.black),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color2),
+                    borderSide: const BorderSide(color: Palette.black),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color2),
+                    borderSide: const BorderSide(color: Palette.black),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
@@ -193,7 +193,7 @@ class _AuthPageState extends State<AuthPage> {
 
   Widget _registerFields() {
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.symmetric(horizontal: 25),
       child: Center(
         child: Column(
           children: [
@@ -210,7 +210,7 @@ class _AuthPageState extends State<AuthPage> {
                     : GestureDetector(
                         onTap: selectImage,
                         child: CircleAvatar(
-                          backgroundColor: Palette.color2,
+                          backgroundColor: Palette.black,
                           radius: 64,
                           child: Container(
                             decoration: BoxDecoration(
@@ -234,23 +234,23 @@ class _AuthPageState extends State<AuthPage> {
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
                 style: const TextStyle(
-                  color: Palette.color1,
+                  color: Palette.black,
                 ),
-                cursorColor: Palette.curserColor,
+                cursorColor: Palette.lightBlue,
                 controller: _controllerEmail,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Palette.fieldColor,
+                  fillColor: Palette.lightBlue2,
                   hintText: 'E-mail',
-                  hintStyle: const TextStyle(color: Palette.color2),
+                  hintStyle: const TextStyle(color: Palette.black),
                   prefixIcon: const Icon(Icons.email),
-                  prefixIconColor: Palette.color1,
+                  prefixIconColor: Palette.black,
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color2),
+                    borderSide: const BorderSide(color: Palette.black),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color2),
+                    borderSide: const BorderSide(color: Palette.black),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
@@ -260,23 +260,23 @@ class _AuthPageState extends State<AuthPage> {
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
                 style: const TextStyle(
-                  color: Palette.color1,
+                  color: Palette.black,
                 ),
-                cursorColor: Palette.curserColor,
+                cursorColor: Palette.black,
                 controller: _controllerUsername,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Palette.fieldColor,
+                  fillColor: Palette.lightBlue2,
                   hintText: 'Username',
-                  hintStyle: const TextStyle(color: Palette.color2),
+                  hintStyle: const TextStyle(color: Palette.black),
                   prefixIcon: const Icon(Icons.person),
-                  prefixIconColor: Palette.color1,
+                  prefixIconColor: Palette.black,
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color2),
+                    borderSide: const BorderSide(color: Palette.black),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color2),
+                    borderSide: const BorderSide(color: Palette.black),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
@@ -286,23 +286,23 @@ class _AuthPageState extends State<AuthPage> {
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
                 style: const TextStyle(
-                  color: Palette.color1,
+                  color: Palette.black,
                 ),
-                cursorColor: Palette.curserColor,
+                cursorColor: Palette.black,
                 controller: _controllerFullname,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Palette.fieldColor,
+                  fillColor: Palette.lightBlue2,
                   hintText: 'Full Name',
-                  hintStyle: const TextStyle(color: Palette.color2),
+                  hintStyle: const TextStyle(color: Palette.black),
                   prefixIcon: const Icon(Icons.text_fields),
-                  prefixIconColor: Palette.color1,
+                  prefixIconColor: Palette.black,
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color2),
+                    borderSide: const BorderSide(color: Palette.black),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color2),
+                    borderSide: const BorderSide(color: Palette.black),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
@@ -314,29 +314,32 @@ class _AuthPageState extends State<AuthPage> {
                 style: const TextStyle(
                   color: Palette.color1,
                 ),
-                cursorColor: Palette.curserColor,
+                cursorColor: Palette.black,
                 obscureText: true,
                 enableSuggestions: false,
                 autocorrect: false,
                 controller: _controllerPassword,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Palette.fieldColor,
+                  fillColor: Palette.lightBlue2,
                   hintText: 'Password',
-                  hintStyle: const TextStyle(color: Palette.color2),
+                  hintStyle: const TextStyle(color: Palette.black),
                   prefixIcon: const Icon(Icons.key),
-                  prefixIconColor: Palette.color1,
+                  prefixIconColor: Palette.black,
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color2),
+                    borderSide: const BorderSide(color: Palette.black),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Palette.color2),
+                    borderSide: const BorderSide(color: Palette.black),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
               ),
             ),
+            const SizedBox(
+              height: 20,
+            )
           ],
         ),
       ),
@@ -353,12 +356,13 @@ class _AuthPageState extends State<AuthPage> {
         // ignore: sort_child_properties_last
         child: Text(
           isLogin ? 'Login' : 'Register',
-          style: const TextStyle(color: Palette.color5, fontSize: 18),
+          style: const TextStyle(
+              fontFamily: 'Muller', color: Palette.color5, fontSize: 18),
         ),
         onPressed: isLogin ? _login : _registerUser,
         style: ElevatedButton.styleFrom(
           // ignore: deprecated_member_use
-          primary: Palette.color2,
+          primary: Palette.black,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           textStyle: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
@@ -369,37 +373,65 @@ class _AuthPageState extends State<AuthPage> {
 
   // ignore: non_constant_identifier_names
   Widget _login_register_text_button() {
-    return SizedBox(
-      width: 130,
-      height: 70,
-      child: TextButton(
-        // ignore: deprecated_member_use
-        style: TextButton.styleFrom(primary: Colors.grey),
-        onPressed: () {
-          setState(() {
-            isLogin = !isLogin;
-          });
-        },
-        child: Text(
-          isLogin ? 'Register instead' : 'Login instead',
-          style: const TextStyle(color: Palette.color3, fontFamily: 'WorkSans'),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 70, vertical: 0),
+      child: SizedBox(
+        width: 280,
+        height: 70,
+        child: Row(
+          children: [
+            Text(
+              isLogin
+                  ? "Don't you have an account?"
+                  : 'Already have an account?',
+              style: const TextStyle(
+                color: Palette.black,
+                fontFamily: 'Muller',
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            TextButton(
+              // ignore: deprecated_member_use
+              style: TextButton.styleFrom(primary: Colors.grey),
+              onPressed: () {
+                setState(() {
+                  isLogin = !isLogin;
+                });
+              },
+              child: Text(
+                isLogin ? "Register" : 'Login',
+                style: const TextStyle(
+                  color: Palette.normalBlue,
+                  fontFamily: 'Muller',
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 
   Widget _forgot_password_text_button() {
-    return TextButton(
-      // ignore: deprecated_member_use
-      style: TextButton.styleFrom(primary: Colors.grey),
-      onPressed: () {
-        setState(() {
-          print("Forgot password");
-        });
-      },
-      child: const Text(
-        'Forgot Password?',
-        style: TextStyle(color: Palette.color3, fontFamily: 'WorkSans'),
+    return Padding(
+      padding: EdgeInsets.only(left: 200),
+      child: TextButton(
+        // ignore: deprecated_member_use
+        style: TextButton.styleFrom(primary: Colors.grey),
+        onPressed: () {
+          setState(() {
+            print("Forgot password");
+          });
+        },
+        child: const Text(
+          'Forgot Password?',
+          style: TextStyle(
+            color: Palette.normalBlue,
+            fontFamily: 'Muller',
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
     );
   }
@@ -407,7 +439,7 @@ class _AuthPageState extends State<AuthPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Palette.activeColor,
+      backgroundColor: Palette.white,
       body: SingleChildScrollView(
         physics: const NeverScrollableScrollPhysics(),
         child: ConstrainedBox(
@@ -424,7 +456,7 @@ class _AuthPageState extends State<AuthPage> {
                 ),
                 if (isLogin) _loginFields(),
                 if (!isLogin) _registerFields(),
-                _forgot_password_text_button(),
+                if (isLogin) _forgot_password_text_button(),
                 _login_register_button(),
                 _login_register_text_button(),
               ],

@@ -1,10 +1,12 @@
 // ignore: file_names
 // ignore_for_file: file_names, duplicate_ignore
-
-import 'package:flutter_masonry_view/flutter_masonry_view.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter/material.dart';
+import 'package:rec4trav/screens/B_NavigatorBar/B_Nav_Pages/ProfilePage.dart';
 
-import '../../../Models/Palette.dart';
+import '../../../models/Palette.dart';
 
 class DiscoverPage extends StatefulWidget {
   const DiscoverPage({super.key});
@@ -14,45 +16,128 @@ class DiscoverPage extends StatefulWidget {
 }
 
 class DiscoverPageState extends State<DiscoverPage> {
-  final _items = [
-    'assets/images/intro1.jpg',
-    'assets/images/intro2.jpg',
-    'assets/images/intro3.jpg',
-    'assets/images/intro4.jpg',
-    'assets/images/intro5.jpg',
-    'assets/images/intro1.jpg',
-    'assets/images/intro3.jpg',
-    'assets/images/intro4.jpg',
-    'assets/images/intro5.jpg',
-    'assets/images/intro2.jpg',
-    'assets/images/intro1.jpg',
-    'assets/images/intro3.jpg',
-    'assets/images/intro4.jpg',
-    'assets/images/intro5.jpg',
-    'assets/images/intro2.jpg',
-    'assets/images/intro1.jpg',
-    'assets/images/intro3.jpg',
-    'assets/images/intro4.jpg',
-    'assets/images/intro5.jpg',
-    'assets/images/intro2.jpg',
-  ];
+  List<String> imageUrls = [];
+  final TextEditingController searchController = TextEditingController();
+  bool isShowUsers = false;
+  @override
+  void initState() {
+    super.initState();
+    getImages();
+  }
+
+  Future<void> getImages() async {
+    final storage = FirebaseStorage.instance;
+    final ref = storage.ref().child('/profile_images');
+    final ListResult result = await ref.listAll();
+
+    for (final item in result.items) {
+      final url = await item.getDownloadURL();
+      setState(() {
+        imageUrls.add(url);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Palette.activeColor,
       appBar: AppBar(
-        title: const Text('Discover'),
-        backgroundColor: Palette.color2,
-      ),
-      body: SingleChildScrollView(
-        child: MasonryView(
-          listOfItem: _items,
-          numberOfColumn: 2,
-          itemBuilder: (item) {
-            return Image.asset(item);
-          },
+        backgroundColor: Palette.normalBlue,
+        title: Form(
+          child: TextFormField(
+            style: const TextStyle(color: Palette.white, fontFamily: 'Muller'),
+            cursorColor: Palette.lightBlue,
+            controller: searchController,
+            decoration: const InputDecoration(
+              prefixIcon: const Icon(Icons.search_outlined),
+              prefixIconColor: Palette.white,
+              labelText: 'Search for a user...',
+              labelStyle:
+                  const TextStyle(color: Palette.white, fontFamily: 'Muller'),
+            ),
+            onFieldSubmitted: (String _) {
+              setState(() {
+                isShowUsers = true;
+              });
+              print(_);
+            },
+          ),
         ),
       ),
+      body: isShowUsers
+          ? FutureBuilder(
+              future: FirebaseFirestore.instance
+                  .collection('RegUser')
+                  .where(
+                    'username',
+                    isGreaterThanOrEqualTo: searchController.text,
+                  )
+                  .get(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                return ListView.builder(
+                  itemCount: (snapshot.data! as dynamic).docs.length,
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => ProfilePage(
+                            uid: (snapshot.data! as dynamic).docs[index]['uid'],
+                          ),
+                        ),
+                      ),
+                      child: ListTile(
+                        leading: CircleAvatar(
+                          backgroundImage: NetworkImage(
+                            (snapshot.data! as dynamic).docs[index]['photoUrl'],
+                          ),
+                          radius: 16,
+                        ),
+                        title: Text(
+                          (snapshot.data! as dynamic).docs[index]['username'],
+                        ),
+                      ),
+                    );
+                  },
+                );
+              },
+            )
+          : FutureBuilder(
+              future: FirebaseFirestore.instance
+                  .collection('postsFlutter')
+                  .orderBy('datePublished')
+                  .get(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+
+                return StaggeredGridView.countBuilder(
+                  crossAxisCount: 3,
+                  itemCount: (snapshot.data! as dynamic).docs.length,
+                  itemBuilder: (context, index) => Image.network(
+                    (snapshot.data! as dynamic).docs[index]['postUrl'],
+                    fit: BoxFit.cover,
+                  ),
+                  staggeredTileBuilder: (index) => MediaQuery.of(context)
+                              .size
+                              .width >
+                          0.5
+                      ? StaggeredTile.count(
+                          (index % 7 == 0) ? 1 : 1, (index % 7 == 0) ? 1 : 1)
+                      : StaggeredTile.count(
+                          (index % 7 == 0) ? 2 : 1, (index % 7 == 0) ? 2 : 1),
+                  mainAxisSpacing: 2.0,
+                  crossAxisSpacing: 2.0,
+                );
+              },
+            ),
     );
   }
 }
