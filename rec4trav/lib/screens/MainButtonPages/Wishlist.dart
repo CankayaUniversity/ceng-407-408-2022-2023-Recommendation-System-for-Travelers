@@ -55,37 +55,101 @@ class _WishListPageState extends State<WishListPage> {
                   itemCount: snapshot.data?.length ?? 0,
                   itemBuilder: (context, index) {
                     var item = snapshot.data![index];
-                    return ListTile(
-                      // title: Text(item["name"]),
-
-                      shape: RoundedRectangleBorder(
-                        side: BorderSide(width: 0.5),
-                        borderRadius: BorderRadius.circular(2),
-                      ),
-                      leading: CircleAvatar(
-                        backgroundColor: Palette.color4,
-                        backgroundImage: NetworkImage(item["profilePic"]),
-                      ),
-                      title: Text(item["name"] ?? ''),
-                      subtitle: Text(item["lat"].toString() +
-                              ", " +
-                              item["lng"].toString() ??
-                          ''),
-                      trailing: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            FireStoreMethods().deletewishlist(
-                                FirebaseAuth.instance.currentUser!.uid,
-                                item["name"]);
-                            wishlist = FireStoreMethods().getWishlistData(
-                                FirebaseAuth.instance.currentUser!.uid);
-                          });
-                          _reloadPage();
-                        },
-                        color: Colors.black54,
-                        icon: Icon(Icons.remove_circle),
-                      ),
-                      //
+                    return Padding(
+                      padding: const EdgeInsets.all(5),
+                      child: Column(children: [
+                        ListTile(
+                          splashColor: Palette.lightBlue2,
+                          contentPadding: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(width: 0.5),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          tileColor: Palette.lightBlue,
+                          leading: Container(
+                            padding: EdgeInsets.only(right: 12),
+                            decoration: new BoxDecoration(
+                              border: new Border(
+                                  right: new BorderSide(
+                                      width: 1, color: Colors.white)),
+                            ),
+                            child: item["profilePic"] ==
+                                    'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=&key=APIKEY'
+                                ? Icon(Icons.view_carousel)
+                                : CircleAvatar(
+                                    radius: 16,
+                                    backgroundColor: Palette.color4,
+                                    backgroundImage:
+                                        NetworkImage(item["profilePic"]),
+                                    child: item["profilePic"] == null
+                                        ? Icon(Icons.people)
+                                        : null,
+                                  ),
+                          ),
+                          title: Text(
+                            item["name"] ?? '',
+                            style: const TextStyle(
+                              fontSize: 20,
+                              color: Palette.black,
+                              fontFamily: 'Muller',
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          subtitle: Text(
+                            item["lat"].toString() +
+                                ", " +
+                                item["lng"].toString(),
+                            style: const TextStyle(
+                              fontSize: 12,
+                              color: Palette.black,
+                              fontFamily: 'Muller',
+                              fontWeight: FontWeight.w300,
+                            ),
+                          ),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    FireStoreMethods().deletewishlist(
+                                        FirebaseAuth.instance.currentUser!.uid,
+                                        item["name"]);
+                                    wishlist = wishlist = FireStoreMethods()
+                                        .getWishlistData(FirebaseAuth
+                                            .instance.currentUser!.uid);
+                                    FireStoreMethods().addrecentplaces(
+                                        FirebaseAuth.instance.currentUser!.uid,
+                                        item["lat"],
+                                        item["lng"],
+                                        item["name"],
+                                        item["profilePic"].toString());
+                                  });
+                                  _reloadPage();
+                                },
+                                color: Colors.black54,
+                                icon: Icon(Icons.done_outlined),
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    FireStoreMethods().deletewishlist(
+                                        FirebaseAuth.instance.currentUser!.uid,
+                                        item["name"]);
+                                    wishlist = FireStoreMethods()
+                                        .getWishlistData(FirebaseAuth
+                                            .instance.currentUser!.uid);
+                                  });
+                                  _reloadPage();
+                                },
+                                color: Colors.black54,
+                                icon: Icon(Icons.remove_circle_outline_rounded),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ]),
                     );
                   },
                 ),
@@ -96,84 +160,6 @@ class _WishListPageState extends State<WishListPage> {
           }
         },
       ),
-      // FutureBuilder<List<Map<String, dynamic>>>(
-      //   future: FireStoreMethods()
-      //       .getWishlistData(FirebaseAuth.instance.currentUser!.uid),
-      //   builder: (BuildContext context,
-      //       AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
-      //     if (snapshot.hasData) {
-      //       List<Map<String, dynamic>> wishlistData = snapshot.data!;
-      //       return SingleChildScrollView(
-      //         child: ListView.builder(
-      //           shrinkWrap: true,
-      //           physics: NeverScrollableScrollPhysics(),
-      //           itemCount: wishlistData.length,
-      //           itemBuilder: (BuildContext context, int index) {
-      //             return ListTile(
-      //               shape: RoundedRectangleBorder(
-      //                 side: BorderSide(width: 0.5),
-      //                 borderRadius: BorderRadius.circular(2),
-      //               ),
-      //               leading: CircleAvatar(
-      //                 backgroundColor: Palette.color4,
-      //                 backgroundImage: NetworkImage(wishlistData[index]
-      //                         ["profilePic"] ??
-      //                     'https://cdn.pixabay.com/photo/2016/08/07/15/34/do-not-take-photos-1576438_960_720.png'),
-      //               ),
-      //               title: Text(wishlistData[index]["name"] ?? ''),
-      //               subtitle: Text(wishlistData[index]["lat"].toString() +
-      //                       ", " +
-      //                       wishlistData[index]["lng"].toString() ??
-      //                   ''),
-      //               trailing: IconButton(
-      //                 onPressed: () {
-      //                   FireStoreMethods().deletewishlist(
-      //                       FirebaseAuth.instance.currentUser!.uid,
-      //                       wishlistData[index]["name"]);
-      //                   Navigator.pushReplacement(
-      //                       context,
-      //                       MaterialPageRoute(
-      //                           builder: (BuildContext context) =>
-      //                               super.widget));
-      //                 },
-      //                 color: Colors.black54,
-      //                 icon: Icon(Icons.remove_circle),
-      //               ),
-      //             );
-      //           },
-      //         ),
-      //       );
-      //     } else {
-      //       return CircularProgressIndicator();
-      //     }
-      //   },
     );
-    // body: FutureBuilder<List<String>>(
-    //   future: FireStoreMethods()
-    //       .getWishlistData(FirebaseAuth.instance.currentUser!.uid),
-    //   builder: (BuildContext context, AsyncSnapshot<List<String>> snapshot) {
-    //     if (snapshot.hasData) {
-    //       List<String> wishlistNames = snapshot.data!;
-    //       print("saa");
-    //       return SingleChildScrollView(
-    //         child: ListView.builder(
-    //           shrinkWrap: true,
-    //           physics: NeverScrollableScrollPhysics(),
-    //           itemCount: wishlistNames.length,
-    //           itemBuilder: (BuildContext context, int index) {
-    //             return ListTile(
-    //               leading: Netw,
-    //               title: Text(wishlistNames[index]),
-    //             );
-    //           },
-    //         ),
-    //       );
-    //     } else {
-    //       return Center(
-    //         child: CircularProgressIndicator(),
-    //       );
-    //     }
-    //   },
-    // ),
   }
 }
