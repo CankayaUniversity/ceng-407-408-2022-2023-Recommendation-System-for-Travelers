@@ -18,6 +18,7 @@
 		671AFA5829C8DCC600BF92AC /* CommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671AFA5729C8DCC600BF92AC /* CommentsCell.swift */; };
 		671AFA5B29C8DCE300BF92AC /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671AFA5A29C8DCE300BF92AC /* CommentViewModel.swift */; };
 		671AFA5D29C8DF2F00BF92AC /* CustomInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671AFA5C29C8DF2F00BF92AC /* CustomInputView.swift */; };
+		677E3C0D29F6F4F1009AB5E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 677E3C0C29F6F4F1009AB5E9 /* GoogleService-Info.plist */; };
 		67E922AC29C32CFC0063AF68 /* Rec4TravApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E922AB29C32CFC0063AF68 /* Rec4TravApp.swift */; };
 		67E922AE29C32CFC0063AF68 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E922AD29C32CFC0063AF68 /* ContentView.swift */; };
 		67E922B029C32CFE0063AF68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67E922AF29C32CFE0063AF68 /* Assets.xcassets */; };
@@ -64,7 +65,6 @@
 		67E9232329C331F90063AF68 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E9232229C331F90063AF68 /* SearchBar.swift */; };
 		67E9232529C332080063AF68 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E9232429C332080063AF68 /* SearchView.swift */; };
 		67E9232A29C332330063AF68 /* UploadPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E9232929C332330063AF68 /* UploadPostView.swift */; };
-		67E9232C29C333690063AF68 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67E9232B29C333690063AF68 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +79,7 @@
 		671AFA5729C8DCC600BF92AC /* CommentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsCell.swift; sourceTree = "<group>"; };
 		671AFA5A29C8DCE300BF92AC /* CommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
 		671AFA5C29C8DF2F00BF92AC /* CustomInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputView.swift; sourceTree = "<group>"; };
+		677E3C0C29F6F4F1009AB5E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		67E922A829C32CFC0063AF68 /* Rec4Trav.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rec4Trav.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67E922AB29C32CFC0063AF68 /* Rec4TravApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rec4TravApp.swift; sourceTree = "<group>"; };
 		67E922AD29C32CFC0063AF68 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -119,7 +120,6 @@
 		67E9232229C331F90063AF68 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		67E9232429C332080063AF68 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		67E9232929C332330063AF68 /* UploadPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostView.swift; sourceTree = "<group>"; };
-		67E9232B29C333690063AF68 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +195,7 @@
 		67E9229F29C32CFC0063AF68 = {
 			isa = PBXGroup;
 			children = (
+				677E3C0C29F6F4F1009AB5E9 /* GoogleService-Info.plist */,
 				67E922AA29C32CFC0063AF68 /* Rec4Trav */,
 				67E922A929C32CFC0063AF68 /* Products */,
 			);
@@ -212,7 +213,6 @@
 			isa = PBXGroup;
 			children = (
 				6704B1CA29E21C9C0042C665 /* Manager */,
-				67E9232B29C333690063AF68 /* GoogleService-Info.plist */,
 				67E922C529C32D180063AF68 /* Views */,
 				67E922C429C32D170063AF68 /* ViewModels */,
 				67E922C329C32D160063AF68 /* Models */,
@@ -486,8 +486,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				67E922B329C32CFE0063AF68 /* Preview Assets.xcassets in Resources */,
+				677E3C0D29F6F4F1009AB5E9 /* GoogleService-Info.plist in Resources */,
 				67E922B029C32CFE0063AF68 /* Assets.xcassets in Resources */,
-				67E9232C29C333690063AF68 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

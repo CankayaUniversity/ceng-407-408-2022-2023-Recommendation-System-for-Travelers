@@ -13,7 +13,10 @@ import UIKit
 class AuthViewModel : ObservableObject {
     @Published var userSession : Firebase.User?
     @Published var currentUser : User?
-    
+    @Published var loginStatusMessage = ""
+
+    @Published var registerStatusMessage = ""
+
     static let shared = AuthViewModel()
     
     init(){
@@ -25,12 +28,19 @@ class AuthViewModel : ObservableObject {
         Auth.auth().signIn(withEmail: email , password: password){result, error in
             if let error = error {
                 print("DEBUG: Login failed \(error.localizedDescription)")
+                self.loginStatusMessage = "Failed to login user: \(error.localizedDescription)"
+                
                 return
             }
             guard let user = result?.user else { return }
             self.userSession = user
             self.fetchUser()
         }
+    }
+    
+    func emptyStatus(){
+        self.loginStatusMessage = ""
+        self.registerStatusMessage = ""
     }
     
     func register(withEmail email: String, password: String, image: UIImage?, fullname: String, username: String){
@@ -42,6 +52,8 @@ class AuthViewModel : ObservableObject {
                     
                 if let error = error{
                     print(error.localizedDescription)
+                    self.registerStatusMessage = "Failed to register user: \(error)"
+
                     return
                 }
                 
@@ -69,6 +81,7 @@ class AuthViewModel : ObservableObject {
     }
     func signOut(){
         self.userSession = nil
+        
         try? Auth.auth().signOut()
     }
     func fetchUser(){

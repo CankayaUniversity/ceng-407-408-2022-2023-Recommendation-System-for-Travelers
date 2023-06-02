@@ -6,11 +6,15 @@
 //
 
 import SwiftUI
+import Firebase
+
+
 
 struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
-    
+    @State private var showAlert = false
+
     @EnvironmentObject var viewModel : AuthViewModel
     var body: some View {
         NavigationView{
@@ -20,6 +24,7 @@ struct LoginView: View {
                 VStack{
                     Image("logo")
                         .resizable()
+                        .clipShape(Circle())
                         .scaledToFit()
                         .frame(width:220 ,height: 100)
                         .padding(.top,100)
@@ -68,6 +73,8 @@ struct LoginView: View {
                     
                     Button(action: {
                         viewModel.login(withEmail: email, password: password)
+                        
+                        viewModel.emptyStatus()
                     }, label: {
                         Text("Sign In")
                             .font(.headline)
@@ -80,6 +87,7 @@ struct LoginView: View {
                     }).padding(.top)
                     //Already have an account
                     
+              
                     Spacer()
                     
                     NavigationLink(destination: RegisterView().navigationBarBackButtonHidden(true), label: {
@@ -99,6 +107,13 @@ struct LoginView: View {
               
                 
                 }
+                .alert(isPresented: .constant(!viewModel.loginStatusMessage.isEmpty)) {
+                           Alert(title: Text("Login Status"),
+                                 message: Text(viewModel.loginStatusMessage),
+                                 dismissButton: .default(Text("Okay")))
+                    
+                 
+                       }
             }
         }
     }

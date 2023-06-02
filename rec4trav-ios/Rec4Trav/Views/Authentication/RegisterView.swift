@@ -16,7 +16,8 @@ struct RegisterView: View {
     @State private var selectedImage : UIImage?
     @State private var profileImage : Image?
     @State var isImagePickerPresented = false
-    
+    @State private var showAlert = false
+
   
     @EnvironmentObject var viewModel : AuthViewModel
 
@@ -35,13 +36,7 @@ struct RegisterView: View {
                         
                         VStack{
                             
-                            
-                            Image("logo")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width:220 ,height: 100)
-                            // .padding(.top,20)
-                            // .padding(.bottom,20)
+                       
                             ZStack{
                                 
                             
@@ -147,6 +142,8 @@ struct RegisterView: View {
                                Button(action: {
                                    viewModel.register(withEmail: email, password: password, image: selectedImage, fullname: fullname, username: username)
                                    
+                                   viewModel.emptyStatus()
+                                   
                                }, label: {
                                    Text("Sign Up")
                                        .font(.headline)
@@ -161,6 +158,8 @@ struct RegisterView: View {
                            }else{
                                Button(action: {
                                    viewModel.register(withEmail: email, password: password, image: selectedImage, fullname: fullname, username: username)
+                                   
+                                   viewModel.emptyStatus()
                                }, label: {
                                    Text("Passwords Doesn't Match")
                                        .font(.headline)
@@ -177,6 +176,7 @@ struct RegisterView: View {
 
                            }
                             
+                        
                               Button(action: {
                                   mode.wrappedValue.dismiss()
                               }, label: {
@@ -193,6 +193,12 @@ struct RegisterView: View {
                             
 
                             
+                        }       .alert(isPresented: .constant(!viewModel.registerStatusMessage.isEmpty)) {
+                            Alert(title: Text("Login Status"),
+                                  message: Text(viewModel.registerStatusMessage),
+                                  dismissButton: .default(Text("Okay")))
+                     
+                  
                         }
                         
                          
