@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:rec4trav/Screens/MainButtonPages/Wishlist.dart';
-import 'package:rec4trav/Screens/MainButtonPages/Maps.dart';
 import 'package:rec4trav/Screens/MainButtonPages/Photos.dart';
-import 'package:rec4trav/Screens/MainButtonPages/RecentPlaces.dart';
 
+import '../screens/MainButtonPages/Maps.dart';
+import '../screens/MainButtonPages/RecentPlaces.dart';
 import 'Palette.dart';
 
 // ignore: must_be_immutable
